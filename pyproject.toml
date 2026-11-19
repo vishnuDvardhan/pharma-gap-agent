@@ -5,7 +5,7 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "gapagent"
 version = "0.1.0"
-description = "Multi-market regulatory gap analysis agent for CTD dossiers (prototype, synthetic data)"
+description = "Multi-market regulatory gap analysis for CTD dossiers: vector DB retrieval + multi-agent crew (prototype, synthetic data)"
 readme = "README.md"
 requires-python = ">=3.10"
 dependencies = [
