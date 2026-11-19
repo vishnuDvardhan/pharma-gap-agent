@@ -51,7 +51,7 @@
       "llm_calls": 0,
       "input_tokens": 0,
       "output_tokens": 0,
-      "duration_ms": 103
+      "duration_ms": 147
     },
     "misses": [
       {
@@ -156,7 +156,7 @@
       "llm_calls": 0,
       "input_tokens": 0,
       "output_tokens": 0,
-      "duration_ms": 138
+      "duration_ms": 219
     },
     "misses": [
       {
@@ -261,7 +261,7 @@
       "llm_calls": 0,
       "input_tokens": 0,
       "output_tokens": 0,
-      "duration_ms": 126
+      "duration_ms": 147
     },
     "misses": [
       {
@@ -334,7 +334,7 @@
       "llm_calls": 0,
       "input_tokens": 0,
       "output_tokens": 0,
-      "duration_ms": 168
+      "duration_ms": 197
     },
     "misses": [
       {
@@ -365,7 +365,7 @@
     "n": 80,
     "gap_recall": 0.969,
     "gap_precision": 0.969,
-    "exact_acc": 0.912,
+    "exact_acc": 0.925,
     "quote_verified": 1.0,
     "confusion": {
       "Met": {
@@ -384,8 +384,8 @@
       },
       "Missing": {
         "Met": 1,
-        "Partial": 5,
-        "Missing": 21,
+        "Partial": 4,
+        "Missing": 22,
         "Needs expert review": 0,
         "Not applicable": 0
       },
@@ -409,7 +409,7 @@
       "llm_calls": 0,
       "input_tokens": 0,
       "output_tokens": 0,
-      "duration_ms": 148
+      "duration_ms": 183
     },
     "misses": [
       {
@@ -459,14 +459,6 @@
         "gold": "Met",
         "pred": "Partial",
         "reasoning": "Keyword groups found: 2/3."
-      },
-      {
-        "dossier": "zelvorin_global",
-        "market": "IN",
-        "req_id": "IN-PV-PSUR",
-        "gold": "Missing",
-        "pred": "Partial",
-        "reasoning": "Keyword groups found: 1/2."
       }
     ]
   }

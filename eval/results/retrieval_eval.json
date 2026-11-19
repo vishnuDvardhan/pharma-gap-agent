@@ -1,62 +1,300 @@
-[
-  {
-    "dossier": "zelvorin_global",
-    "method": "bm25",
-    "filter": false,
-    "n": 27,
-    "recall@1": 0.926,
-    "recall@3": 1.0,
-    "recall@5": 1.0,
-    "mrr": 0.963
-  },
-  {
-    "dossier": "zelvorin_global",
-    "method": "bm25",
-    "filter": true,
-    "n": 27,
-    "recall@1": 1.0,
-    "recall@3": 1.0,
-    "recall@5": 1.0,
-    "mrr": 1.0
-  },
-  {
-    "dossier": "zelvorin_global",
-    "method": "dense",
-    "filter": false,
-    "n": 27,
-    "recall@1": 0.926,
-    "recall@3": 1.0,
-    "recall@5": 1.0,
-    "mrr": 0.963
-  },
-  {
-    "dossier": "zelvorin_global",
-    "method": "dense",
-    "filter": true,
-    "n": 27,
-    "recall@1": 0.963,
-    "recall@3": 1.0,
-    "recall@5": 1.0,
-    "mrr": 0.981
-  },
-  {
-    "dossier": "zelvorin_global",
-    "method": "hybrid",
-    "filter": false,
-    "n": 27,
-    "recall@1": 0.889,
-    "recall@3": 1.0,
-    "recall@5": 1.0,
-    "mrr": 0.944
-  },
-  {
-    "dossier": "zelvorin_global",
-    "method": "hybrid",
-    "filter": true,
-    "n": 27,
-    "recall@1": 0.963,
-    "recall@3": 1.0,
-    "recall@5": 1.0,
-    "mrr": 0.981
-  }
-]
+{
+  "per_dossier": [
+    {
+      "dossier": "zelvorin_global",
+      "method": "bm25",
+      "index": "-",
+      "filter": false,
+      "n": 27,
+      "recall@1": 0.9259259259259259,
+      "recall@3": 1.0,
+      "recall@5": 1.0,
+      "mrr": 0.9629629629629629
+    },
+    {
+      "dossier": "zelvorin_global",
+      "method": "bm25",
+      "index": "-",
+      "filter": true,
+      "n": 27,
+      "recall@1": 1.0,
+      "recall@3": 1.0,
+      "recall@5": 1.0,
+      "mrr": 1.0
+    },
+    {
+      "dossier": "zelvorin_global",
+      "method": "dense",
+      "index": "memory",
+      "filter": false,
+      "n": 27,
+      "recall@1": 0.9259259259259259,
+      "recall@3": 1.0,
+      "recall@5": 1.0,
+      "mrr": 0.9629629629629629
+    },
+    {
+      "dossier": "zelvorin_global",
+      "method": "dense",
+      "index": "memory",
+      "filter": true,
+      "n": 27,
+      "recall@1": 0.9629629629629629,
+      "recall@3": 1.0,
+      "recall@5": 1.0,
+      "mrr": 0.9814814814814815
+    },
+    {
+      "dossier": "zelvorin_global",
+      "method": "dense",
+      "index": "local",
+      "filter": false,
+      "n": 27,
+      "recall@1": 0.9259259259259259,
+      "recall@3": 1.0,
+      "recall@5": 1.0,
+      "mrr": 0.9629629629629629
+    },
+    {
+      "dossier": "zelvorin_global",
+      "method": "dense",
+      "index": "local",
+      "filter": true,
+      "n": 27,
+      "recall@1": 0.9629629629629629,
+      "recall@3": 1.0,
+      "recall@5": 1.0,
+      "mrr": 0.9814814814814815
+    },
+    {
+      "dossier": "zelvorin_global",
+      "method": "dense",
+      "index": "chroma",
+      "filter": false,
+      "n": 27,
+      "recall@1": 0.9259259259259259,
+      "recall@3": 1.0,
+      "recall@5": 1.0,
+      "mrr": 0.9629629629629629
+    },
+    {
+      "dossier": "zelvorin_global",
+      "method": "dense",
+      "index": "chroma",
+      "filter": true,
+      "n": 27,
+      "recall@1": 0.9629629629629629,
+      "recall@3": 1.0,
+      "recall@5": 1.0,
+      "mrr": 0.9814814814814815
+    },
+    {
+      "dossier": "zelvorin_global",
+      "method": "hybrid",
+      "index": "memory",
+      "filter": false,
+      "n": 27,
+      "recall@1": 0.8888888888888888,
+      "recall@3": 1.0,
+      "recall@5": 1.0,
+      "mrr": 0.9444444444444444
+    },
+    {
+      "dossier": "zelvorin_global",
+      "method": "hybrid",
+      "index": "memory",
+      "filter": true,
+      "n": 27,
+      "recall@1": 0.9629629629629629,
+      "recall@3": 1.0,
+      "recall@5": 1.0,
+      "mrr": 0.9814814814814815
+    },
+    {
+      "dossier": "zelvorin_global",
+      "method": "hybrid",
+      "index": "local",
+      "filter": false,
+      "n": 27,
+      "recall@1": 0.8888888888888888,
+      "recall@3": 1.0,
+      "recall@5": 1.0,
+      "mrr": 0.9444444444444444
+    },
+    {
+      "dossier": "zelvorin_global",
+      "method": "hybrid",
+      "index": "local",
+      "filter": true,
+      "n": 27,
+      "recall@1": 0.9629629629629629,
+      "recall@3": 1.0,
+      "recall@5": 1.0,
+      "mrr": 0.9814814814814815
+    },
+    {
+      "dossier": "zelvorin_global",
+      "method": "hybrid",
+      "index": "chroma",
+      "filter": false,
+      "n": 27,
+      "recall@1": 0.8888888888888888,
+      "recall@3": 1.0,
+      "recall@5": 1.0,
+      "mrr": 0.9444444444444444
+    },
+    {
+      "dossier": "zelvorin_global",
+      "method": "hybrid",
+      "index": "chroma",
+      "filter": true,
+      "n": 27,
+      "recall@1": 0.9629629629629629,
+      "recall@3": 1.0,
+      "recall@5": 1.0,
+      "mrr": 0.9814814814814815
+    }
+  ],
+  "pooled": [
+    {
+      "method": "bm25",
+      "index": "-",
+      "filter": false,
+      "n": 27,
+      "recall@1": 0.926,
+      "recall@3": 1.0,
+      "recall@5": 1.0,
+      "mrr": 0.963
+    },
+    {
+      "method": "bm25",
+      "index": "-",
+      "filter": true,
+      "n": 27,
+      "recall@1": 1.0,
+      "recall@3": 1.0,
+      "recall@5": 1.0,
+      "mrr": 1.0
+    },
+    {
+      "method": "dense",
+      "index": "memory",
+      "filter": false,
+      "n": 27,
+      "recall@1": 0.926,
+      "recall@3": 1.0,
+      "recall@5": 1.0,
+      "mrr": 0.963
+    },
+    {
+      "method": "dense",
+      "index": "memory",
+      "filter": true,
+      "n": 27,
+      "recall@1": 0.963,
+      "recall@3": 1.0,
+      "recall@5": 1.0,
+      "mrr": 0.981
+    },
+    {
+      "method": "dense",
+      "index": "local",
+      "filter": false,
+      "n": 27,
+      "recall@1": 0.926,
+      "recall@3": 1.0,
+      "recall@5": 1.0,
+      "mrr": 0.963
+    },
+    {
+      "method": "dense",
+      "index": "local",
+      "filter": true,
+      "n": 27,
+      "recall@1": 0.963,
+      "recall@3": 1.0,
+      "recall@5": 1.0,
+      "mrr": 0.981
+    },
+    {
+      "method": "dense",
+      "index": "chroma",
+      "filter": false,
+      "n": 27,
+      "recall@1": 0.926,
+      "recall@3": 1.0,
+      "recall@5": 1.0,
+      "mrr": 0.963
+    },
+    {
+      "method": "dense",
+      "index": "chroma",
+      "filter": true,
+      "n": 27,
+      "recall@1": 0.963,
+      "recall@3": 1.0,
+      "recall@5": 1.0,
+      "mrr": 0.981
+    },
+    {
+      "method": "hybrid",
+      "index": "memory",
+      "filter": false,
+      "n": 27,
+      "recall@1": 0.889,
+      "recall@3": 1.0,
+      "recall@5": 1.0,
+      "mrr": 0.944
+    },
+    {
+      "method": "hybrid",
+      "index": "memory",
+      "filter": true,
+      "n": 27,
+      "recall@1": 0.963,
+      "recall@3": 1.0,
+      "recall@5": 1.0,
+      "mrr": 0.981
+    },
+    {
+      "method": "hybrid",
+      "index": "local",
+      "filter": false,
+      "n": 27,
+      "recall@1": 0.889,
+      "recall@3": 1.0,
+      "recall@5": 1.0,
+      "mrr": 0.944
+    },
+    {
+      "method": "hybrid",
+      "index": "local",
+      "filter": true,
+      "n": 27,
+      "recall@1": 0.963,
+      "recall@3": 1.0,
+      "recall@5": 1.0,
+      "mrr": 0.981
+    },
+    {
+      "method": "hybrid",
+      "index": "chroma",
+      "filter": false,
+      "n": 27,
+      "recall@1": 0.889,
+      "recall@3": 1.0,
+      "recall@5": 1.0,
+      "mrr": 0.944
+    },
+    {
+      "method": "hybrid",
+      "index": "chroma",
+      "filter": true,
+      "n": 27,
+      "recall@1": 0.963,
+      "recall@3": 1.0,
+      "recall@5": 1.0,
+      "mrr": 0.981
+    }
+  ]
+}
