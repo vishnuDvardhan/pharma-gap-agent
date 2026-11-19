@@ -13,11 +13,13 @@ jobs:
         with:
           python-version: "3.12"
       - name: Install
-        run: pip install -e ".[anthropic,openai,bedrock,dev]"
+        run: pip install -e ".[anthropic,openai,bedrock,vectordb,dev]"
       - name: Lint
         run: ruff check src tests eval
-      - name: Unit + integration tests (no network, LLMs are mocked)
+      - name: Unit + integration tests (no network, LLMs are mocked; vector DB tests run on local + ChromaDB)
         run: pytest -q
+      - name: Multi-agent smoke test (offline crew)
+        run: gapagent ask --multi --trace "What blocks a launch in India and Japan?"
       - name: Retrieval eval
         run: python eval/eval_retrieval.py
       - name: Gap eval with regression gate (gap recall must not drop)
@@ -58,3 +60,5 @@ jobs:
           for i in $(seq 1 20); do curl -sf localhost:8000/health && break; sleep 1; done
           curl -sf -X POST localhost:8000/gap-checks -H 'content-type: application/json' \
             -d '{"dossier_id":"zelvorin_global","markets":["US","IN","JP"]}' | python -m json.tool | head -20
+          curl -sf -X POST localhost:8000/agent/multi -H 'content-type: application/json' \
+            -d '{"question":"What blocks a launch in Japan?"}' | python -c "import json,sys;r=json.load(sys.stdin);assert r['review']['approved'];print(r['answer'])"
