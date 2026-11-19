@@ -169,3 +169,14 @@ def test_offline_agent_market_parsing(cfg):
     res = run_agent("Tell us: can we launch in India?", cfg, "zelvorin_global")
     assert [t["args"] for t in res.trace if t["tool"] == "run_gap_check"] == [{"markets": ["IN"]}]
     assert "IN-LBL-SHELF" in res.answer and not res.flags
+
+
+def test_search_tools_use_vector_db_and_respect_allowlist(cfg):
+    from gapagent.agent import ToolBox
+    tb = ToolBox(cfg, "zelvorin_global")
+    req = tb.call("search_requirements", {"query": "long-term stability 30 degrees 75% RH zone IVb"})
+    assert req["results"][0]["req_id"] == "IN-Q-STAB-IVB"
+    us = tb.call("search_dossier", {"query": "US agent appointment", "module": "m1", "region": "us"})["results"]
+    assert us and all(r["region"] == "us" for r in us)
+    assert any("warning" in r for r in us)        # the planted injection text is flagged, not hidden
+    assert "not permitted" in tb.call("run_gap_check", {"markets": ["IN"]}, allowed={"get_finding"})["error"]
