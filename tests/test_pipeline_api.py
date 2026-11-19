@@ -73,6 +73,7 @@ def test_audit_store_is_append_only(cfg):
 def client(tmp_path, monkeypatch):
     from fastapi.testclient import TestClient
     monkeypatch.setenv("GAPAGENT_DB_PATH", str(tmp_path / "api.sqlite"))
+    monkeypatch.setenv("GAPAGENT_VECTOR_PATH", str(tmp_path / "vectordb"))
     import gapagent.api as api
     importlib.reload(api)
     return TestClient(api.app)

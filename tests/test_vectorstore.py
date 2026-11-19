@@ -2,14 +2,22 @@
 from __future__ import annotations
 
 import importlib.util
+from pathlib import Path
 
 import pytest
 
+from gapagent.config import load_config
+from gapagent.loader import load_dossier, load_requirements
+from gapagent.pipeline import GapChecker, run_gap_check
+from gapagent.retrieval import Retriever, candidate_indices, requirement_query
 from gapagent.vectorstore import (
     BACKENDS,
+    DOSSIER_COLLECTION,
     HashingEmbedder,
     LocalVectorStore,
+    index_dossier,
     make_embedder,
+    make_vector_store,
     matches,
 )
 
@@ -78,3 +86,33 @@ def test_filter_language():
 def test_tfidf_cannot_back_a_persistent_store():
     with pytest.raises(ValueError, match="cannot back a vector store"):
         make_embedder("tfidf")
+
+
+@pytest.mark.parametrize("kind", KINDS)
+def test_vector_db_retrieval_matches_in_memory_and_keeps_region_filter(kind, tmp_path):
+    cfg = load_config(vector_store=kind, vector_path=str(tmp_path), embedder="hash")
+    d = load_dossier(Path(cfg["data_dir"]) / "dossiers" / "zelvorin_ref")
+    store = make_vector_store(cfg, DOSSIER_COLLECTION)
+    assert index_dossier(store, d).added == len(d.chunks)
+    assert index_dossier(store, d).unchanged == len(d.chunks)
+    mem = Retriever(d.chunks, "hybrid", "tfidf")
+    vdb = Retriever(d.chunks, "hybrid", vector_store=store)
+    for r in [x for rs in load_requirements(Path(cfg["data_dir"])).values() for x in rs]:
+        idx, _ = candidate_indices(d.chunks, r)
+        got = vdb.search(requirement_query(r), 3, idx)
+        assert {h.chunk.chunk_id for h in got} <= {d.chunks[i].chunk_id for i in idx}   # filter respected
+        assert got[0].chunk.file == mem.search(requirement_query(r), 3, idx)[0].chunk.file if idx else not got
+        if r.id.startswith("US-M1"):
+            assert all(h.chunk.region in (None, "us") for h in got)
+
+
+def test_pipeline_uses_vector_db_and_reindexes_incrementally(cfg):
+    g = GapChecker(cfg, "zelvorin_global")
+    assert g.vector_store is not None and g.index_stats.added > 0
+    g2 = GapChecker(cfg, "zelvorin_global")
+    assert g2.index_stats.added == g2.index_stats.updated == 0
+    # same verdicts with the in-memory index
+    mem = dict(cfg, retrieval={**cfg["retrieval"], "vector_store": "none", "embedder": "tfidf"})
+    a = {(f.market, f.req_id): f.verdict for f in run_gap_check(cfg, "zelvorin_global", ["US", "IN", "JP"]).findings}
+    b = {(f.market, f.req_id): f.verdict for f in run_gap_check(mem, "zelvorin_global", ["US", "IN", "JP"]).findings}
+    assert a == b

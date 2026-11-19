@@ -20,6 +20,7 @@ from .pathway import decide_pathway, is_active
 from .retrieval import Retriever, candidate_indices, requirement_query
 from .rules import run_rule
 from .schema import Dossier, Evidence, Finding, GapRun, Pathway, Requirement, RunStats, Verdict
+from .vectorstore import DOSSIER_COLLECTION, index_dossier, make_vector_store
 
 
 class GapChecker:
@@ -31,7 +32,10 @@ class GapChecker:
         self.market_cfg = load_markets(self.data_dir)
         rc = cfg["retrieval"]
         self.top_k, self.section_filter = rc["top_k"], rc["section_filter"]
-        self.retriever = Retriever(self.dossier.chunks, rc["method"], rc.get("embedder", "tfidf"))
+        self.vector_store = make_vector_store(cfg, DOSSIER_COLLECTION)
+        self.index_stats = index_dossier(self.vector_store, self.dossier) if self.vector_store else None
+        self.retriever = Retriever(self.dossier.chunks, rc["method"], rc.get("embedder", "tfidf"),
+                                   vector_store=self.vector_store)
         self.llm = llm if llm is not None else make_llm(
             cfg["backend"], cfg["model"], self.dossier.data_classification,
             cfg["governance"]["allowed_external_classifications"],

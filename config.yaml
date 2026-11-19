@@ -11,7 +11,10 @@ max_tokens: 800
 
 retrieval:
   method: hybrid                  # bm25 | dense | hybrid
-  embedder: tfidf                 # tfidf (offline) | st:BAAI/bge-small-en-v1.5 (needs sentence-transformers)
+  vector_store: local             # local (built-in, numpy) | chroma (pip install -e ".[vectordb]") | none (in-memory)
+  vector_path: runs/vectordb      # persistent index; re-runs only re-embed chunks whose text changed
+  embedder: hash                  # hash (offline, stateless) | st:BAAI/bge-small-en-v1.5 (needs sentence-transformers)
+                                  # | tfidf (only with vector_store: none; it is re-fitted per corpus)
   top_k: 4
   section_filter: true
 

@@ -84,14 +84,28 @@ class Hit:
 
 
 class Retriever:
-    def __init__(self, chunks: list[Chunk], method: str = "hybrid", embedder: str = "tfidf", rrf_k: int = 60):
+    """Hybrid retriever. The dense half is either an in-memory matrix (`vector_store=None`) or a
+    persistent vector DB (`vectorstore.py`), queried with a metadata filter that restricts it to
+    the same candidate chunks the section/region filter allowed."""
+
+    def __init__(self, chunks: list[Chunk], method: str = "hybrid", embedder: str = "tfidf", rrf_k: int = 60,
+                 vector_store=None):
         if method not in {"bm25", "dense", "hybrid"}:
             raise ValueError(f"unknown retrieval method {method}")
         self.chunks, self.method, self.rrf_k = chunks, method, rrf_k
         docs = [f"{c.heading}\n{c.text}" for c in chunks]
         self.bm25 = BM25(docs) if method in {"bm25", "hybrid"} else None
-        self.embedder = Embedder(embedder) if method in {"dense", "hybrid"} else None
+        self.store = vector_store if method in {"dense", "hybrid"} else None
+        self.embedder = Embedder(embedder) if method in {"dense", "hybrid"} and self.store is None else None
         self.emb = self.embedder.fit(docs) if self.embedder else None
+
+    def _dense_scores(self, query: str, idx: np.ndarray) -> np.ndarray:
+        if self.store is None:
+            return self.emb[idx] @ self.embedder.encode([query])[0]
+        ids = [self.chunks[i].chunk_id for i in idx]
+        hits = self.store.query(query, k=len(ids), where={"chunk_id": {"$in": ids}})
+        by_id = {h.id: h.score for h in hits}
+        return np.array([by_id.get(cid, -1.0) for cid in ids])  # not returned => ranked last
 
     def search(self, query: str, k: int = 5, candidates: list[int] | None = None) -> list[Hit]:
         idx = np.arange(len(self.chunks)) if candidates is None else np.asarray(candidates, dtype=int)
@@ -101,9 +115,8 @@ class Retriever:
         if self.bm25 is not None:
             s = self.bm25.scores(query)[idx]
             rankings.append(s)
-        if self.emb is not None:
-            q = self.embedder.encode([query])[0]
-            rankings.append(self.emb[idx] @ q)
+        if self.emb is not None or self.store is not None:
+            rankings.append(self._dense_scores(query, idx))
         if len(rankings) == 1:
             final = rankings[0]
         else:  # reciprocal rank fusion

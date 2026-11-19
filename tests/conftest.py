@@ -27,7 +27,7 @@ class FakeLLM(LLM):
 
 @pytest.fixture
 def cfg(tmp_path: Path):
-    return load_config(db_path=str(tmp_path / "audit.sqlite"))
+    return load_config(db_path=str(tmp_path / "audit.sqlite"), vector_path=str(tmp_path / "vectordb"))
 
 
 @pytest.fixture
