@@ -1,0 +1,369 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<title>Gap analysis zelvorin_global → US, IN, JP</title>
+<style>
+body{font:14px/1.45 system-ui,sans-serif;margin:24px auto;max-width:1200px;color:#1d2433;padding:0 16px}
+h1{font-size:22px;margin:0 0 4px} h2{font-size:17px;margin:28px 0 8px;border-bottom:1px solid #dde1e8;padding-bottom:4px}
+.muted{color:#5f6b7a} table{border-collapse:collapse;width:100%;margin:8px 0}
+th,td{border:1px solid #dde1e8;padding:6px 8px;vertical-align:top;text-align:left} th{background:#f4f6f9}
+.v{font-weight:600;white-space:nowrap;border-radius:4px;padding:1px 6px}
+.Met{background:#e3f4e8;color:#16642f}.Partial{background:#fff3d6;color:#7a5200}
+.Missing{background:#fde4e4;color:#9b1c1c}.Needs{background:#e6ecfb;color:#24459b}.Not{background:#eef0f3;color:#5f6b7a}
+.cards{display:flex;gap:12px;flex-wrap:wrap}.card{border:1px solid #dde1e8;border-radius:8px;padding:10px 14px;min-width:200px}
+.card b{font-size:20px} q{color:#33415c} .flag{font-size:12px;background:#fde4e4;color:#9b1c1c;border-radius:3px;padding:0 4px;margin-left:4px}
+.banner{background:#fff3d6;border:1px solid #f0d58c;padding:8px 12px;border-radius:6px}
+</style></head><body>
+<h1>Regulatory gap analysis: zelvorin_global</h1>
+<div class="muted">Target markets: US, IN, JP · mode: diff · run d59e89a71bb1 · 2026-11-19T19:01:17+00:00</div>
+<p class="banner">Prototype on synthetic data. Requirement texts are paraphrased and not verified against
+official sources. Not for regulatory decisions. Every finding needs sign-off by a qualified reviewer.</p>
+
+<h2>Summary</h2>
+<div class="cards">
+
+<div class="card"><div class="muted">US · NDA 505(b)(1) (new molecular entity)</div>
+<b>3</b> gaps (1 critical) · 2 expert reviews · 18 met</div>
+
+<div class="card"><div class="muted">IN · New drug import (CT-18), local clinical trial waiver may be requested (Rule 101)</div>
+<b>3</b> gaps (2 critical) · 2 expert reviews · 16 met</div>
+
+<div class="card"><div class="muted">JP · New drug application (foreign data, ICH E5 bridging)</div>
+<b>3</b> gaps (2 critical) · 2 expert reviews · 15 met</div>
+
+</div>
+
+<h2>Pathway decisions (rule-based)</h2>
+<table><tr><th>Market</th><th>Pathway</th><th>Rationale</th></tr>
+<tr><td>US</td><td>NDA 505(b)(1) (new molecular entity)</td>
+<td>Applicant country CH → foreign applicant: True.<br>Manufacturing sites in [&#39;DE&#39;] → imported: True.<br>New active substance: True → NDA 505(b)(1) (new molecular entity).<br></td></tr><tr><td>IN</td><td>New drug import (CT-18), local clinical trial waiver may be requested (Rule 101)</td>
+<td>Applicant country CH → foreign applicant: True.<br>Manufacturing sites in [&#39;DE&#39;] → imported: True.<br>Approved in [&#39;EU&#39;], which are Rule 101 reference markets → waiver may be requested (the CLA decides; not automatic).<br></td></tr><tr><td>JP</td><td>New drug application (foreign data, ICH E5 bridging)</td>
+<td>Applicant country CH → foreign applicant: True.<br>Manufacturing sites in [&#39;DE&#39;] → imported: True.<br>Pivotal data are foreign → ethnic-factor evaluation / bridging per ICH E5 is needed.<br></td></tr></table>
+
+<h2>Gap matrix</h2>
+<table><tr><th>Requirement</th><th>Severity</th><th>US</th><th>IN</th><th>JP</th></tr>
+<tr><td><b>ICH-M2-QOS-01</b><br><span class="muted">Quality Overall Summary present</span></td><td>major</td>
+<td><span class="v Met">Met</span></td><td><span class="v Met">Met</span></td><td><span class="v Met">Met</span></td></tr><tr><td><b>ICH-Q-DS-SPEC-01</b><br><span class="muted">Drug substance specification</span></td><td>critical</td>
+<td><span class="v Met">Met</span></td><td><span class="v Met">Met</span></td><td><span class="v Met">Met</span></td></tr><tr><td><b>ICH-Q-DP-SPEC-01</b><br><span class="muted">Drug product specification incl. dissolution</span></td><td>critical</td>
+<td><span class="v Met">Met</span></td><td><span class="v Met">Met</span></td><td><span class="v Met">Met</span></td></tr><tr><td><b>ICH-Q-VAL-01</b><br><span class="muted">Analytical procedure validation</span></td><td>critical</td>
+<td><span class="v Met">Met</span></td><td><span class="v Met">Met</span></td><td><span class="v Met">Met</span></td></tr><tr><td><b>ICH-Q-IMP-01</b><br><span class="muted">Degradation products discussed against thresholds</span></td><td>major</td>
+<td><span class="v Met">Met</span></td><td><span class="v Met">Met</span></td><td><span class="v Met">Met</span></td></tr><tr><td><b>ICH-Q-PV-01</b><br><span class="muted">Process validation / evaluation</span></td><td>major</td>
+<td><span class="v Met">Met</span></td><td><span class="v Met">Met</span></td><td><span class="v Met">Met</span></td></tr><tr><td><b>ICH-Q-CC-01</b><br><span class="muted">Container closure system described</span></td><td>minor</td>
+<td><span class="v Met">Met</span></td><td><span class="v Met">Met</span></td><td><span class="v Met">Met</span></td></tr><tr><td><b>ICH-Q-STAB-01</b><br><span class="muted">Stability on at least 3 primary batches</span></td><td>critical</td>
+<td><span class="v Met">Met</span></td><td><span class="v Met">Met</span></td><td><span class="v Met">Met</span></td></tr><tr><td><b>ICH-Q-STAB-02</b><br><span class="muted">At least 12 months long-term data at submission</span></td><td>critical</td>
+<td><span class="v Met">Met</span></td><td><span class="v Met">Met</span></td><td><span class="v Met">Met</span></td></tr><tr><td><b>ICH-Q-STAB-03</b><br><span class="muted">Accelerated stability (40°C/75% RH, 6 months)</span></td><td>major</td>
+<td><span class="v Met">Met</span></td><td><span class="v Met">Met</span></td><td><span class="v Met">Met</span></td></tr><tr><td><b>ICH-Q-STAB-04</b><br><span class="muted">Long-term condition 25°C/60% RH (Zones I/II)</span></td><td>critical</td>
+<td><span class="v Met">Met</span></td><td><span class="v Not">Not applicable (replaced by IN-Q-STAB-IVB)</span></td><td><span class="v Met">Met</span></td></tr><tr><td><b>ICH-C-CSR-01</b><br><span class="muted">Pivotal efficacy study report</span></td><td>critical</td>
+<td><span class="v Met">Met</span></td><td><span class="v Met">Met</span></td><td><span class="v Met">Met</span></td></tr><tr><td><b>ICH-C-EXP-01</b><br><span class="muted">Benefit-risk conclusion acceptable</span></td><td>critical</td>
+<td><span class="v Needs">Needs expert review</span></td><td><span class="v Needs">Needs expert review</span></td><td><span class="v Needs">Needs expert review</span></td></tr><tr><td><b>US-M1-356H</b><br><span class="muted">Form FDA 356h application form</span></td><td>critical</td>
+<td><span class="v Met">Met</span></td><td></td><td></td></tr><tr><td><b>US-M1-3397</b><br><span class="muted">User fee cover sheet (Form FDA 3397)</span></td><td>major</td>
+<td><span class="v Met">Met</span></td><td></td><td></td></tr><tr><td><b>US-M1-AGENT</b><br><span class="muted">US agent for a foreign applicant</span></td><td>critical</td>
+<td><span class="v Met">Met</span></td><td></td><td></td></tr><tr><td><b>US-M1-DEBAR</b><br><span class="muted">Debarment certification</span></td><td>major</td>
+<td><span class="v Missing">Missing</span></td><td></td><td></td></tr><tr><td><b>US-M1-FINDISC</b><br><span class="muted">Financial disclosure for clinical investigators</span></td><td>major</td>
+<td><span class="v Partial">Partial</span></td><td></td><td></td></tr><tr><td><b>US-M1-PATENT</b><br><span class="muted">Patent information (Form FDA 3542a)</span></td><td>major</td>
+<td><span class="v Met">Met</span></td><td></td><td></td></tr><tr><td><b>US-M1-PEDS</b><br><span class="muted">Agreed initial Pediatric Study Plan (PREA)</span></td><td>major</td>
+<td><span class="v Met">Met</span></td><td></td><td></td></tr><tr><td><b>US-M1-PLR</b><br><span class="muted">Prescribing information in PLR format + SPL</span></td><td>critical</td>
+<td><span class="v Partial">Partial</span></td><td></td><td></td></tr><tr><td><b>US-LBL-SHELF</b><br><span class="muted">US label shelf life matches stability conclusion</span></td><td>critical</td>
+<td><span class="v Met">Met</span></td><td></td><td></td></tr><tr><td><b>US-EXP-REMS</b><br><span class="muted">Need for a REMS</span></td><td>major</td>
+<td><span class="v Needs">Needs expert review</span></td><td></td><td></td></tr><tr><td><b>IN-M1-CT18</b><br><span class="muted">Application in Form CT-18 (import of new drug)</span></td><td>critical</td>
+<td></td><td><span class="v Met">Met</span></td><td></td></tr><tr><td><b>IN-M1-APPROVAL</b><br><span class="muted">Proof of approval in a Rule 101 country</span></td><td>critical</td>
+<td></td><td><span class="v Met">Met</span></td><td></td></tr><tr><td><b>IN-M1-WAIVER</b><br><span class="muted">Local clinical trial waiver request</span></td><td>critical</td>
+<td></td><td><span class="v Met">Met</span></td><td></td></tr><tr><td><b>IN-C-LOCALCT</b><br><span class="muted">Local clinical trial in Indian subjects</span></td><td>critical</td>
+<td></td><td><span class="v Not">Not applicable</span></td><td></td></tr><tr><td><b>IN-M1-FORM40</b><br><span class="muted">Registration of overseas site and product (Form 40)</span></td><td>critical</td>
+<td></td><td><span class="v Met">Met</span></td><td></td></tr><tr><td><b>IN-Q-STAB-IVB</b><br><span class="muted">Long-term stability at 30°C/75% RH (Zone IVb)</span></td><td>critical</td>
+<td></td><td><span class="v Partial">Partial</span></td><td></td></tr><tr><td><b>IN-M1-LABEL-RX</b><br><span class="muted">Prescription-only (Schedule H) warning on label</span></td><td>major</td>
+<td></td><td><span class="v Met">Met</span></td><td></td></tr><tr><td><b>IN-LBL-SHELF</b><br><span class="muted">India label shelf life matches Zone IVb stability conclusion</span></td><td>critical</td>
+<td></td><td><span class="v Partial">Partial</span></td><td></td></tr><tr><td><b>IN-PV-PSUR</b><br><span class="muted">PSUR commitment</span></td><td>major</td>
+<td></td><td><span class="v Missing">Missing</span></td><td></td></tr><tr><td><b>IN-EXP-WAIVER</b><br><span class="muted">Adequacy of the waiver justification</span></td><td>critical</td>
+<td></td><td><span class="v Needs">Needs expert review</span></td><td></td></tr><tr><td><b>JP-M1-LANG</b><br><span class="muted">Module 1 and Module 2 provided in Japanese</span></td><td>critical</td>
+<td></td><td></td><td><span class="v Missing">Missing</span></td></tr><tr><td><b>JP-M1-DMAH</b><br><span class="muted">Designated Marketing Authorization Holder in Japan</span></td><td>critical</td>
+<td></td><td></td><td><span class="v Met">Met</span></td></tr><tr><td><b>JP-M1-FMA</b><br><span class="muted">Foreign Manufacturer Accreditation</span></td><td>critical</td>
+<td></td><td></td><td><span class="v Partial">Partial</span></td></tr><tr><td><b>JP-C-BRIDGE</b><br><span class="muted">Ethnic factors / bridging data (ICH E5)</span></td><td>critical</td>
+<td></td><td></td><td><span class="v Met">Met</span></td></tr><tr><td><b>JP-Q-JPCOMP</b><br><span class="muted">Compliance with the Japanese Pharmacopoeia</span></td><td>major</td>
+<td></td><td></td><td><span class="v Missing">Missing</span></td></tr><tr><td><b>JP-LBL-SHELF</b><br><span class="muted">Japan package insert shelf life matches stability conclusion</span></td><td>critical</td>
+<td></td><td></td><td><span class="v Met">Met</span></td></tr><tr><td><b>JP-EXP-BRIDGE</b><br><span class="muted">Adequacy of the bridging strategy</span></td><td>critical</td>
+<td></td><td></td><td><span class="v Needs">Needs expert review</span></td></tr>
+</table>
+
+
+<h2>US: findings</h2>
+<table><tr><th style="width:18%">Requirement</th><th style="width:11%">Verdict</th><th>Reasoning and evidence</th><th style="width:20%">Source</th></tr>
+<tr>
+<td><b>ICH-M2-QOS-01</b> <span class="muted">(ICH core)</span><br>Quality Overall Summary present</td>
+<td><span class="v Met">Met</span></td>
+<td>All keyword groups found.<br><q># 2.3 Quality Overall Summary</q> <span class="muted">[2.3_quality_overall_summary]</span><br><q>## 2.3.S Drug substance Zelvoretinib is a crystalline small molecule (Form A) manufactured by a five-step synthesis.</q> <span class="muted">[2.3_quality_overall_summary]</span></td>
+<td>ICH M4Q(R1)<br><span class="muted">Module 2.3 Quality Overall Summary</span></td></tr><tr>
+<td><b>ICH-Q-DS-SPEC-01</b> <span class="muted">(ICH core)</span><br>Drug substance specification</td>
+<td><span class="v Met">Met</span></td>
+<td>All keyword groups found.<br><q>| Identification (IR) | Ph.</q> <span class="muted">[3.2.S.4.1_ds_specification]</span><br><q>| Identification (HPLC) | HPLC-ZLV-01 | Retention time matches reference |</q> <span class="muted">[3.2.S.4.1_ds_specification]</span></td>
+<td>ICH Q6A<br><span class="muted">Universal tests for new drug substances</span></td></tr><tr>
+<td><b>ICH-Q-DP-SPEC-01</b> <span class="muted">(ICH core)</span><br>Drug product specification incl. dissolution</td>
+<td><span class="v Met">Met</span></td>
+<td>All keyword groups found.<br><q>| Assay | HPLC-ZLV-01 | 95.0-105.0% | 92.5-105.0% |</q> <span class="muted">[3.2.P.5.1_dp_specification]</span><br><q>| Degradation products: ZLV-D1 | HPLC-ZLV-02 | ≤ 0.2% | ≤ 0.5% |</q> <span class="muted">[3.2.P.5.1_dp_specification]</span></td>
+<td>ICH Q6A<br><span class="muted">Specific tests for solid oral dosage forms (dissolution)</span></td></tr><tr>
+<td><b>ICH-Q-VAL-01</b> <span class="muted">(ICH core)</span><br>Analytical procedure validation</td>
+<td><span class="v Met">Met</span></td>
+<td>All keyword groups found.<br><q># 3.2.P.5.3 Validation of Analytical Procedures</q> <span class="muted">[3.2.P.5.3_validation]</span><br><q>HPLC-ZLV-01 (assay) and HPLC-ZLV-02 (degradation products) were validated according to ICH Q2(R2).</q> <span class="muted">[3.2.P.5.3_validation]</span></td>
+<td>ICH Q2(R2)<br><span class="muted">Validation characteristics</span></td></tr><tr>
+<td><b>ICH-Q-IMP-01</b> <span class="muted">(ICH core)</span><br>Degradation products discussed against thresholds</td>
+<td><span class="v Met">Met</span></td>
+<td>All keyword groups found.<br><q>The main degradation product ZLV-D1 (N-oxide) forms under oxidative stress.</q> <span class="muted">[3.2.P.5.5_impurities]</span><br><q>Degradation products are reported above the reporting threshold of 0.1% and identified above the identification threshold of 0.2%, in line with ICH Q3B(R2) for a maximum daily dose of 100 mg.</q> <span class="muted">[3.2.P.5.5_impurities]</span></td>
+<td>ICH Q3B(R2)<br><span class="muted">Reporting, identification and qualification thresholds</span></td></tr><tr>
+<td><b>ICH-Q-PV-01</b> <span class="muted">(ICH core)</span><br>Process validation / evaluation</td>
+<td><span class="v Met">Met</span></td>
+<td>All keyword groups found.<br><q># 3.2.P.3.5 Process Validation and/or Evaluation</q> <span class="muted">[3.2.P.3.5_process_validation]</span><br><q>Process validation was performed on three consecutive commercial-scale validation batches (ZLV-P-001, ZLV-P-002, ZLV-P-003) at Helvara Production GmbH.</q> <span class="muted">[3.2.P.3.5_process_validation]</span></td>
+<td>ICH M4Q(R1)<br><span class="muted">3.2.P.3.5 Process validation and/or evaluation</span></td></tr><tr>
+<td><b>ICH-Q-CC-01</b> <span class="muted">(ICH core)</span><br>Container closure system described</td>
+<td><span class="v Met">Met</span></td>
+<td>All keyword groups found.<br><q># 3.2.P.7 Container Closure System</q> <span class="muted">[3.2.P.7_container_closure]</span><br><q>Primary packaging: cold-form Alu/Alu blister.</q> <span class="muted">[3.2.P.7_container_closure]</span></td>
+<td>ICH M4Q(R1)<br><span class="muted">3.2.P.7 Container closure system</span></td></tr><tr>
+<td><b>ICH-Q-STAB-01</b> <span class="muted">(ICH core)</span><br>Stability on at least 3 primary batches</td>
+<td><span class="v Met">Met</span></td>
+<td>3 batches at 25°C/60% RH (ZLV-P-001, ZLV-P-002, ZLV-P-003).<br><q>Long-term: 25°C ± 2°C / 60% RH ± 5% RH</q> <span class="muted">[3.2.P.8.3_stability_data]</span></td>
+<td>ICH Q1A(R2)<br><span class="muted">2.2.3 Selection of batches</span></td></tr><tr>
+<td><b>ICH-Q-STAB-02</b> <span class="muted">(ICH core)</span><br>At least 12 months long-term data at submission</td>
+<td><span class="v Met">Met</span></td>
+<td>All batches have ≥ 24 months at 25°C/60% RH (≥ 12 required).<br><q>Long-term: 25°C ± 2°C / 60% RH ± 5% RH</q> <span class="muted">[3.2.P.8.3_stability_data]</span></td>
+<td>ICH Q1A(R2)<br><span class="muted">2.2.7 Testing frequency / minimum time period at submission</span></td></tr><tr>
+<td><b>ICH-Q-STAB-03</b> <span class="muted">(ICH core)</span><br>Accelerated stability (40°C/75% RH, 6 months)</td>
+<td><span class="v Met">Met</span></td>
+<td>All keyword groups found.<br><q>For Zone IVb markets, two batches were placed at 30°C/75% RH.</q> <span class="muted">[3.2.P.8.1_stability_summary]</span><br><q>Proposed shelf life (Zone II, 25°C/60% RH): 36 months Proposed shelf life (Zone IVb, 30°C/75% RH): 24 months Storage statement (Zone IVb): Do not store above 30°C.</q> <span class="muted">[3.2.P.8.1_stability_summary]</span></td>
+<td>ICH Q1A(R2)<br><span class="muted">2.2.7 Storage conditions (accelerated)</span></td></tr><tr>
+<td><b>ICH-Q-STAB-04</b> <span class="muted">(ICH core)</span><br>Long-term condition 25°C/60% RH (Zones I/II)</td>
+<td><span class="v Met">Met</span></td>
+<td>3 batches at 25°C/60% RH (ZLV-P-001, ZLV-P-002, ZLV-P-003).<br><q>Long-term: 25°C ± 2°C / 60% RH ± 5% RH</q> <span class="muted">[3.2.P.8.3_stability_data]</span></td>
+<td>ICH Q1A(R2)<br><span class="muted">2.2.7 Storage conditions (long term)</span></td></tr><tr>
+<td><b>ICH-C-CSR-01</b> <span class="muted">(ICH core)</span><br>Pivotal efficacy study report</td>
+<td><span class="v Met">Met</span></td>
+<td>All keyword groups found.<br><q>Title: A randomised, open-label, phase III study of zelvoretinib versus standard of care in adults with previously treated advanced solid tumours harbouring ZLV-1 alterations.</q> <span class="muted">[5.3.5.1_csr_zlv301]</span><br><q>Patients: 612 randomised 1:1.</q> <span class="muted">[5.3.5.1_csr_zlv301]</span></td>
+<td>ICH M4E(R2) / ICH E3<br><span class="muted">5.3.5 Reports of efficacy and safety studies</span></td></tr><tr>
+<td><b>ICH-C-EXP-01</b> <span class="muted">(ICH core)</span><br>Benefit-risk conclusion acceptable</td>
+<td><span class="v Needs">Needs expert review</span></td>
+<td>Judgement call reserved for a qualified reviewer; evidence attached.<br><q># 2.5 Clinical Overview</q> <span class="muted">[2.5_clinical_overview]</span><br><q>## 2.5.6 Benefits and risks conclusions</q> <span class="muted">[2.5_clinical_overview]</span></td>
+<td>ICH M4E(R2)<br><span class="muted">2.5.6 Benefits and risks conclusions</span></td></tr><tr>
+<td><b>US-M1-356H</b><br>Form FDA 356h application form</td>
+<td><span class="v Met">Met</span><span class="flag">injection_detected</span></td>
+<td>All keyword groups found.<br><q>## Form FDA 356h Form FDA 356h has been completed for the NDA and signed by Dr.</q> <span class="muted">[1.1_forms_and_cover_letter]</span><br><q>The application is countersigned by Mark O&#39;Neill, Director Regulatory Affairs, Helvara Inc.</q> <span class="muted">[1.1_forms_and_cover_letter]</span></td>
+<td>21 CFR 314.50<br><span class="muted">Application form (Form FDA 356h)</span></td></tr><tr>
+<td><b>US-M1-3397</b><br>User fee cover sheet (Form FDA 3397)</td>
+<td><span class="v Met">Met</span><span class="flag">injection_detected</span></td>
+<td>All keyword groups found.<br><q>## Form FDA 3397 (user fee cover sheet) Form FDA 3397 is enclosed.</q> <span class="muted">[1.1_forms_and_cover_letter]</span><br><q>User fee payment identification number: PD3029114.</q> <span class="muted">[1.1_forms_and_cover_letter]</span></td>
+<td>FD&amp;C Act sec. 736 (PDUFA)<br><span class="muted">Prescription drug user fee cover sheet</span></td></tr><tr>
+<td><b>US-M1-AGENT</b><br>US agent for a foreign applicant</td>
+<td><span class="v Met">Met</span><span class="flag">injection_detected</span></td>
+<td>All keyword groups found.<br><q>## US agent As the applicant does not reside in the United States, Helvara Inc., 300 Main Street, Cambridge, MA 02142, is appointed as US agent.</q> <span class="muted">[1.1_forms_and_cover_letter]</span><br><q>The application is countersigned by Mark O&#39;Neill, Director Regulatory Affairs, Helvara Inc.</q> <span class="muted">[1.1_forms_and_cover_letter]</span></td>
+<td>21 CFR 314.50(a)(5)<br><span class="muted">Applicant not residing in the United States</span></td></tr><tr>
+<td><b>US-M1-DEBAR</b><br>Debarment certification</td>
+<td><span class="v Missing">Missing</span></td>
+<td>Evidence is only promised or explicitly not done: &#39;to be provided&#39;.<br><q>## 1.3.3 Debarment certification Debarment certification: to be provided in an amendment before the 74-day filing communication.</q> <span class="muted">[1.3_administrative_information]</span></td>
+<td>FD&amp;C Act sec. 306(k)(1)<br><span class="muted">Debarment certification</span></td></tr><tr>
+<td><b>US-M1-FINDISC</b><br>Financial disclosure for clinical investigators</td>
+<td><span class="v Partial">Partial</span></td>
+<td>Evidence present but incomplete: &#39;remaining&#39;.<br><q>Forms for the remaining 5 investigators are pending.</q> <span class="muted">[1.3_administrative_information]</span><br><q>## 1.3.4 Financial disclosure Form FDA 3454 certifications are provided for 41 of the 46 clinical investigators of study ZLV-301.</q> <span class="muted">[1.3_administrative_information]</span></td>
+<td>21 CFR Part 54<br><span class="muted">Financial disclosure by clinical investigators (Forms FDA 3454/3455)</span></td></tr><tr>
+<td><b>US-M1-PATENT</b><br>Patent information (Form FDA 3542a)</td>
+<td><span class="v Met">Met</span></td>
+<td>All keyword groups found.<br><q>## 1.3.5 Patent information Form FDA 3542a is provided, listing US Patent 11,xxx,xxx (compound) and US Patent 12,xxx,xxx (method of use).</q> <span class="muted">[1.3_administrative_information]</span></td>
+<td>21 CFR 314.53<br><span class="muted">Submission of patent information</span></td></tr><tr>
+<td><b>US-M1-PEDS</b><br>Agreed initial Pediatric Study Plan (PREA)</td>
+<td><span class="v Met">Met</span></td>
+<td>All keyword groups found.<br><q># 1.9 Pediatric Administrative Information (US)</q> <span class="muted">[1.9_pediatric]</span><br><q>An initial Pediatric Study Plan (iPSP) was agreed with FDA on 14 February 2025.</q> <span class="muted">[1.9_pediatric]</span></td>
+<td>FD&amp;C Act sec. 505B (PREA)<br><span class="muted">Initial pediatric study plan</span></td></tr><tr>
+<td><b>US-M1-PLR</b><br>Prescribing information in PLR format + SPL</td>
+<td><span class="v Partial">Partial</span></td>
+<td>Evidence present but incomplete: &#39;pending&#39;.<br><q>Approval: [pending] Warnings and precautions: hepatotoxicity, QT interval prolongation, embryo-fetal toxicity.</q> <span class="muted">[1.14_prescribing_information]</span><br><q>## Highlights of Prescribing Information ZELVORIN (zelvoretinib) tablets, for oral use.</q> <span class="muted">[1.14_prescribing_information]</span></td>
+<td>21 CFR 201.56 / 201.57<br><span class="muted">Physician Labeling Rule format; SPL electronic format</span></td></tr><tr>
+<td><b>US-LBL-SHELF</b><br>US label shelf life matches stability conclusion</td>
+<td><span class="v Met">Met</span></td>
+<td>Label and Zone II stability conclusion both state 36 months.<br><q>Shelf life: 36 months</q> <span class="muted">[1.14_prescribing_information]</span><br><q>shelf life (Zone II, 25°C/60% RH): 36 months</q> <span class="muted">[3.2.P.8.1_stability_summary]</span></td>
+<td>ICH Q1E / 21 CFR 211.137<br><span class="muted">Expiration dating supported by stability data</span></td></tr><tr>
+<td><b>US-EXP-REMS</b><br>Need for a REMS</td>
+<td><span class="v Needs">Needs expert review</span><span class="flag">searched_outside_expected_section</span></td>
+<td>Judgement call reserved for a qualified reviewer; evidence attached.<br><q># 1.14 Labeling (US)</q> <span class="muted">[1.14_prescribing_information]</span><br><q>## Cover letter</q> <span class="muted">[1.1_forms_and_cover_letter]</span></td>
+<td>FD&amp;C Act sec. 505-1<br><span class="muted">Risk Evaluation and Mitigation Strategies</span></td></tr>
+</table>
+<h2>IN: findings</h2>
+<table><tr><th style="width:18%">Requirement</th><th style="width:11%">Verdict</th><th>Reasoning and evidence</th><th style="width:20%">Source</th></tr>
+<tr>
+<td><b>ICH-M2-QOS-01</b> <span class="muted">(ICH core)</span><br>Quality Overall Summary present</td>
+<td><span class="v Met">Met</span></td>
+<td>All keyword groups found.<br><q># 2.3 Quality Overall Summary</q> <span class="muted">[2.3_quality_overall_summary]</span><br><q>## 2.3.S Drug substance Zelvoretinib is a crystalline small molecule (Form A) manufactured by a five-step synthesis.</q> <span class="muted">[2.3_quality_overall_summary]</span></td>
+<td>ICH M4Q(R1)<br><span class="muted">Module 2.3 Quality Overall Summary</span></td></tr><tr>
+<td><b>ICH-Q-DS-SPEC-01</b> <span class="muted">(ICH core)</span><br>Drug substance specification</td>
+<td><span class="v Met">Met</span></td>
+<td>All keyword groups found.<br><q>| Identification (IR) | Ph.</q> <span class="muted">[3.2.S.4.1_ds_specification]</span><br><q>| Identification (HPLC) | HPLC-ZLV-01 | Retention time matches reference |</q> <span class="muted">[3.2.S.4.1_ds_specification]</span></td>
+<td>ICH Q6A<br><span class="muted">Universal tests for new drug substances</span></td></tr><tr>
+<td><b>ICH-Q-DP-SPEC-01</b> <span class="muted">(ICH core)</span><br>Drug product specification incl. dissolution</td>
+<td><span class="v Met">Met</span></td>
+<td>All keyword groups found.<br><q>| Assay | HPLC-ZLV-01 | 95.0-105.0% | 92.5-105.0% |</q> <span class="muted">[3.2.P.5.1_dp_specification]</span><br><q>| Degradation products: ZLV-D1 | HPLC-ZLV-02 | ≤ 0.2% | ≤ 0.5% |</q> <span class="muted">[3.2.P.5.1_dp_specification]</span></td>
+<td>ICH Q6A<br><span class="muted">Specific tests for solid oral dosage forms (dissolution)</span></td></tr><tr>
+<td><b>ICH-Q-VAL-01</b> <span class="muted">(ICH core)</span><br>Analytical procedure validation</td>
+<td><span class="v Met">Met</span></td>
+<td>All keyword groups found.<br><q># 3.2.P.5.3 Validation of Analytical Procedures</q> <span class="muted">[3.2.P.5.3_validation]</span><br><q>HPLC-ZLV-01 (assay) and HPLC-ZLV-02 (degradation products) were validated according to ICH Q2(R2).</q> <span class="muted">[3.2.P.5.3_validation]</span></td>
+<td>ICH Q2(R2)<br><span class="muted">Validation characteristics</span></td></tr><tr>
+<td><b>ICH-Q-IMP-01</b> <span class="muted">(ICH core)</span><br>Degradation products discussed against thresholds</td>
+<td><span class="v Met">Met</span></td>
+<td>All keyword groups found.<br><q>The main degradation product ZLV-D1 (N-oxide) forms under oxidative stress.</q> <span class="muted">[3.2.P.5.5_impurities]</span><br><q>Degradation products are reported above the reporting threshold of 0.1% and identified above the identification threshold of 0.2%, in line with ICH Q3B(R2) for a maximum daily dose of 100 mg.</q> <span class="muted">[3.2.P.5.5_impurities]</span></td>
+<td>ICH Q3B(R2)<br><span class="muted">Reporting, identification and qualification thresholds</span></td></tr><tr>
+<td><b>ICH-Q-PV-01</b> <span class="muted">(ICH core)</span><br>Process validation / evaluation</td>
+<td><span class="v Met">Met</span></td>
+<td>All keyword groups found.<br><q># 3.2.P.3.5 Process Validation and/or Evaluation</q> <span class="muted">[3.2.P.3.5_process_validation]</span><br><q>Process validation was performed on three consecutive commercial-scale validation batches (ZLV-P-001, ZLV-P-002, ZLV-P-003) at Helvara Production GmbH.</q> <span class="muted">[3.2.P.3.5_process_validation]</span></td>
+<td>ICH M4Q(R1)<br><span class="muted">3.2.P.3.5 Process validation and/or evaluation</span></td></tr><tr>
+<td><b>ICH-Q-CC-01</b> <span class="muted">(ICH core)</span><br>Container closure system described</td>
+<td><span class="v Met">Met</span></td>
+<td>All keyword groups found.<br><q># 3.2.P.7 Container Closure System</q> <span class="muted">[3.2.P.7_container_closure]</span><br><q>Primary packaging: cold-form Alu/Alu blister.</q> <span class="muted">[3.2.P.7_container_closure]</span></td>
+<td>ICH M4Q(R1)<br><span class="muted">3.2.P.7 Container closure system</span></td></tr><tr>
+<td><b>ICH-Q-STAB-01</b> <span class="muted">(ICH core)</span><br>Stability on at least 3 primary batches</td>
+<td><span class="v Met">Met</span></td>
+<td>3 batches at 25°C/60% RH (ZLV-P-001, ZLV-P-002, ZLV-P-003).<br><q>Long-term: 25°C ± 2°C / 60% RH ± 5% RH</q> <span class="muted">[3.2.P.8.3_stability_data]</span></td>
+<td>ICH Q1A(R2)<br><span class="muted">2.2.3 Selection of batches</span></td></tr><tr>
+<td><b>ICH-Q-STAB-02</b> <span class="muted">(ICH core)</span><br>At least 12 months long-term data at submission</td>
+<td><span class="v Met">Met</span></td>
+<td>All batches have ≥ 24 months at 25°C/60% RH (≥ 12 required).<br><q>Long-term: 25°C ± 2°C / 60% RH ± 5% RH</q> <span class="muted">[3.2.P.8.3_stability_data]</span></td>
+<td>ICH Q1A(R2)<br><span class="muted">2.2.7 Testing frequency / minimum time period at submission</span></td></tr><tr>
+<td><b>ICH-Q-STAB-03</b> <span class="muted">(ICH core)</span><br>Accelerated stability (40°C/75% RH, 6 months)</td>
+<td><span class="v Met">Met</span></td>
+<td>All keyword groups found.<br><q>For Zone IVb markets, two batches were placed at 30°C/75% RH.</q> <span class="muted">[3.2.P.8.1_stability_summary]</span><br><q>Proposed shelf life (Zone II, 25°C/60% RH): 36 months Proposed shelf life (Zone IVb, 30°C/75% RH): 24 months Storage statement (Zone IVb): Do not store above 30°C.</q> <span class="muted">[3.2.P.8.1_stability_summary]</span></td>
+<td>ICH Q1A(R2)<br><span class="muted">2.2.7 Storage conditions (accelerated)</span></td></tr><tr>
+<td><b>ICH-C-CSR-01</b> <span class="muted">(ICH core)</span><br>Pivotal efficacy study report</td>
+<td><span class="v Met">Met</span></td>
+<td>All keyword groups found.<br><q>Title: A randomised, open-label, phase III study of zelvoretinib versus standard of care in adults with previously treated advanced solid tumours harbouring ZLV-1 alterations.</q> <span class="muted">[5.3.5.1_csr_zlv301]</span><br><q>Patients: 612 randomised 1:1.</q> <span class="muted">[5.3.5.1_csr_zlv301]</span></td>
+<td>ICH M4E(R2) / ICH E3<br><span class="muted">5.3.5 Reports of efficacy and safety studies</span></td></tr><tr>
+<td><b>ICH-C-EXP-01</b> <span class="muted">(ICH core)</span><br>Benefit-risk conclusion acceptable</td>
+<td><span class="v Needs">Needs expert review</span></td>
+<td>Judgement call reserved for a qualified reviewer; evidence attached.<br><q># 2.5 Clinical Overview</q> <span class="muted">[2.5_clinical_overview]</span><br><q>## 2.5.6 Benefits and risks conclusions</q> <span class="muted">[2.5_clinical_overview]</span></td>
+<td>ICH M4E(R2)<br><span class="muted">2.5.6 Benefits and risks conclusions</span></td></tr><tr>
+<td><b>IN-M1-CT18</b><br>Application in Form CT-18 (import of new drug)</td>
+<td><span class="v Met">Met</span></td>
+<td>All keyword groups found.<br><q>Application in Form CT-18 for permission to import a new drug for sale or distribution, submitted through the SUGAM portal by Helvara India Pvt.</q> <span class="muted">[1.1_form_ct18]</span><br><q>Fee: the prescribed fee has been paid via Bharatkosh, challan no.</q> <span class="muted">[1.1_form_ct18]</span></td>
+<td>NDCT Rules 2019<br><span class="muted">Chapter X / Form CT-18</span></td></tr><tr>
+<td><b>IN-M1-APPROVAL</b><br>Proof of approval in a Rule 101 country</td>
+<td><span class="v Met">Met</span></td>
+<td>All keyword groups found.<br><q>## Request for waiver of local clinical trial Under Rule 101 of the New Drugs and Clinical Trials Rules, 2019, the applicant requests a waiver of the local clinical trial in Indian subjects, because the drug is approved in the European Union.</q> <span class="muted">[1.2_regulatory_status_and_waiver]</span><br><q>## Regulatory status Zelvorin is approved in the European Union.</q> <span class="muted">[1.2_regulatory_status_and_waiver]</span></td>
+<td>NDCT Rules 2019<br><span class="muted">Rule 101 (countries notified for waiver)</span></td></tr><tr>
+<td><b>IN-M1-WAIVER</b><br>Local clinical trial waiver request</td>
+<td><span class="v Met">Met</span></td>
+<td>All keyword groups found.<br><q>## Request for waiver of local clinical trial Under Rule 101 of the New Drugs and Clinical Trials Rules, 2019, the applicant requests a waiver of the local clinical trial in Indian subjects, because the drug is approved in the European Union.</q> <span class="muted">[1.2_regulatory_status_and_waiver]</span><br><q># 1.2 Regulatory Status, Site Registration and Waiver Request (India)</q> <span class="muted">[1.2_regulatory_status_and_waiver]</span></td>
+<td>NDCT Rules 2019<br><span class="muted">Rule 101 and Second Schedule (waiver of local clinical trial)</span></td></tr><tr>
+<td><b>IN-C-LOCALCT</b><br>Local clinical trial in Indian subjects</td>
+<td><span class="v Not">Not applicable</span></td>
+<td>Not applicable: requires pathway=local_trial_required, pathway has pathway=local_trial_waiver_eligible.</td>
+<td>NDCT Rules 2019<br><span class="muted">Second Schedule (local clinical trial)</span></td></tr><tr>
+<td><b>IN-M1-FORM40</b><br>Registration of overseas site and product (Form 40)</td>
+<td><span class="v Met">Met</span></td>
+<td>All keyword groups found.<br><q>## Registration of overseas site An application in Form 40 for registration of the manufacturing site Helvara Production GmbH (Freiburg, Germany) and the product has been submitted, together with the site master file and the GMP certificate issued by the competent authority.</q> <span class="muted">[1.2_regulatory_status_and_waiver]</span><br><q># 1.2 Regulatory Status, Site Registration and Waiver Request (India)</q> <span class="muted">[1.2_regulatory_status_and_waiver]</span></td>
+<td>Drugs Rules 1945<br><span class="muted">Rule 24A / Form 40 (registration certificate in Form 41)</span></td></tr><tr>
+<td><b>IN-Q-STAB-IVB</b><br>Long-term stability at 30°C/75% RH (Zone IVb)</td>
+<td><span class="v Partial">Partial</span></td>
+<td>Only 2 batch(es) at 30°C/75% RH; at least 3 expected.<br><q>Long-term (Zone IVb): 30°C ± 2°C / 75% RH ± 5% RH</q> <span class="muted">[3.2.P.8.3_stability_data]</span></td>
+<td>CDSCO stability guidance / ICH Q1A(R2) + WHO zone IVb<br><span class="muted">Long-term condition for Zone IVb</span></td></tr><tr>
+<td><b>IN-M1-LABEL-RX</b><br>Prescription-only (Schedule H) warning on label</td>
+<td><span class="v Met">Met</span></td>
+<td>All keyword groups found.<br><q>| Symbol | Rx |</q> <span class="muted">[1.3_label_india]</span><br><q>| Warning | Schedule H drug - Warning: To be sold by retail on the prescription of a Registered Medical Practitioner only.</q> <span class="muted">[1.3_label_india]</span></td>
+<td>Drugs Rules 1945<br><span class="muted">Rule 96 / Schedule H labelling</span></td></tr><tr>
+<td><b>IN-LBL-SHELF</b><br>India label shelf life matches Zone IVb stability conclusion</td>
+<td><span class="v Partial">Partial</span></td>
+<td>Inconsistent: label states 36 months but Zone IVb stability supports 24 months.<br><q>Shelf life | 36 months</q> <span class="muted">[1.3_label_india]</span><br><q>shelf life (Zone IVb, 30°C/75% RH): 24 months</q> <span class="muted">[3.2.P.8.1_stability_summary]</span></td>
+<td>Drugs Rules 1945 / ICH Q1E<br><span class="muted">Expiry date supported by stability at local conditions</span></td></tr><tr>
+<td><b>IN-PV-PSUR</b><br>PSUR commitment</td>
+<td><span class="v Missing">Missing</span><span class="flag">searched_outside_expected_section</span></td>
+<td>No keyword group found in the retrieved evidence.</td>
+<td>NDCT Rules 2019<br><span class="muted">Post-marketing: Periodic Safety Update Reports</span></td></tr><tr>
+<td><b>IN-EXP-WAIVER</b><br>Adequacy of the waiver justification</td>
+<td><span class="v Needs">Needs expert review</span></td>
+<td>Judgement call reserved for a qualified reviewer; evidence attached.<br><q>## Request for waiver of local clinical trial</q> <span class="muted">[1.2_regulatory_status_and_waiver]</span><br><q># 1.2 Regulatory Status, Site Registration and Waiver Request (India)</q> <span class="muted">[1.2_regulatory_status_and_waiver]</span></td>
+<td>NDCT Rules 2019<br><span class="muted">Rule 101 (discretion of the Central Licensing Authority)</span></td></tr>
+</table>
+<h2>JP: findings</h2>
+<table><tr><th style="width:18%">Requirement</th><th style="width:11%">Verdict</th><th>Reasoning and evidence</th><th style="width:20%">Source</th></tr>
+<tr>
+<td><b>ICH-M2-QOS-01</b> <span class="muted">(ICH core)</span><br>Quality Overall Summary present</td>
+<td><span class="v Met">Met</span></td>
+<td>All keyword groups found.<br><q># 2.3 Quality Overall Summary</q> <span class="muted">[2.3_quality_overall_summary]</span><br><q>## 2.3.S Drug substance Zelvoretinib is a crystalline small molecule (Form A) manufactured by a five-step synthesis.</q> <span class="muted">[2.3_quality_overall_summary]</span></td>
+<td>ICH M4Q(R1)<br><span class="muted">Module 2.3 Quality Overall Summary</span></td></tr><tr>
+<td><b>ICH-Q-DS-SPEC-01</b> <span class="muted">(ICH core)</span><br>Drug substance specification</td>
+<td><span class="v Met">Met</span></td>
+<td>All keyword groups found.<br><q>| Identification (IR) | Ph.</q> <span class="muted">[3.2.S.4.1_ds_specification]</span><br><q>| Identification (HPLC) | HPLC-ZLV-01 | Retention time matches reference |</q> <span class="muted">[3.2.S.4.1_ds_specification]</span></td>
+<td>ICH Q6A<br><span class="muted">Universal tests for new drug substances</span></td></tr><tr>
+<td><b>ICH-Q-DP-SPEC-01</b> <span class="muted">(ICH core)</span><br>Drug product specification incl. dissolution</td>
+<td><span class="v Met">Met</span></td>
+<td>All keyword groups found.<br><q>| Assay | HPLC-ZLV-01 | 95.0-105.0% | 92.5-105.0% |</q> <span class="muted">[3.2.P.5.1_dp_specification]</span><br><q>| Degradation products: ZLV-D1 | HPLC-ZLV-02 | ≤ 0.2% | ≤ 0.5% |</q> <span class="muted">[3.2.P.5.1_dp_specification]</span></td>
+<td>ICH Q6A<br><span class="muted">Specific tests for solid oral dosage forms (dissolution)</span></td></tr><tr>
+<td><b>ICH-Q-VAL-01</b> <span class="muted">(ICH core)</span><br>Analytical procedure validation</td>
+<td><span class="v Met">Met</span></td>
+<td>All keyword groups found.<br><q># 3.2.P.5.3 Validation of Analytical Procedures</q> <span class="muted">[3.2.P.5.3_validation]</span><br><q>HPLC-ZLV-01 (assay) and HPLC-ZLV-02 (degradation products) were validated according to ICH Q2(R2).</q> <span class="muted">[3.2.P.5.3_validation]</span></td>
+<td>ICH Q2(R2)<br><span class="muted">Validation characteristics</span></td></tr><tr>
+<td><b>ICH-Q-IMP-01</b> <span class="muted">(ICH core)</span><br>Degradation products discussed against thresholds</td>
+<td><span class="v Met">Met</span></td>
+<td>All keyword groups found.<br><q>The main degradation product ZLV-D1 (N-oxide) forms under oxidative stress.</q> <span class="muted">[3.2.P.5.5_impurities]</span><br><q>Degradation products are reported above the reporting threshold of 0.1% and identified above the identification threshold of 0.2%, in line with ICH Q3B(R2) for a maximum daily dose of 100 mg.</q> <span class="muted">[3.2.P.5.5_impurities]</span></td>
+<td>ICH Q3B(R2)<br><span class="muted">Reporting, identification and qualification thresholds</span></td></tr><tr>
+<td><b>ICH-Q-PV-01</b> <span class="muted">(ICH core)</span><br>Process validation / evaluation</td>
+<td><span class="v Met">Met</span></td>
+<td>All keyword groups found.<br><q># 3.2.P.3.5 Process Validation and/or Evaluation</q> <span class="muted">[3.2.P.3.5_process_validation]</span><br><q>Process validation was performed on three consecutive commercial-scale validation batches (ZLV-P-001, ZLV-P-002, ZLV-P-003) at Helvara Production GmbH.</q> <span class="muted">[3.2.P.3.5_process_validation]</span></td>
+<td>ICH M4Q(R1)<br><span class="muted">3.2.P.3.5 Process validation and/or evaluation</span></td></tr><tr>
+<td><b>ICH-Q-CC-01</b> <span class="muted">(ICH core)</span><br>Container closure system described</td>
+<td><span class="v Met">Met</span></td>
+<td>All keyword groups found.<br><q># 3.2.P.7 Container Closure System</q> <span class="muted">[3.2.P.7_container_closure]</span><br><q>Primary packaging: cold-form Alu/Alu blister.</q> <span class="muted">[3.2.P.7_container_closure]</span></td>
+<td>ICH M4Q(R1)<br><span class="muted">3.2.P.7 Container closure system</span></td></tr><tr>
+<td><b>ICH-Q-STAB-01</b> <span class="muted">(ICH core)</span><br>Stability on at least 3 primary batches</td>
+<td><span class="v Met">Met</span></td>
+<td>3 batches at 25°C/60% RH (ZLV-P-001, ZLV-P-002, ZLV-P-003).<br><q>Long-term: 25°C ± 2°C / 60% RH ± 5% RH</q> <span class="muted">[3.2.P.8.3_stability_data]</span></td>
+<td>ICH Q1A(R2)<br><span class="muted">2.2.3 Selection of batches</span></td></tr><tr>
+<td><b>ICH-Q-STAB-02</b> <span class="muted">(ICH core)</span><br>At least 12 months long-term data at submission</td>
+<td><span class="v Met">Met</span></td>
+<td>All batches have ≥ 24 months at 25°C/60% RH (≥ 12 required).<br><q>Long-term: 25°C ± 2°C / 60% RH ± 5% RH</q> <span class="muted">[3.2.P.8.3_stability_data]</span></td>
+<td>ICH Q1A(R2)<br><span class="muted">2.2.7 Testing frequency / minimum time period at submission</span></td></tr><tr>
+<td><b>ICH-Q-STAB-03</b> <span class="muted">(ICH core)</span><br>Accelerated stability (40°C/75% RH, 6 months)</td>
+<td><span class="v Met">Met</span></td>
+<td>All keyword groups found.<br><q>For Zone IVb markets, two batches were placed at 30°C/75% RH.</q> <span class="muted">[3.2.P.8.1_stability_summary]</span><br><q>Proposed shelf life (Zone II, 25°C/60% RH): 36 months Proposed shelf life (Zone IVb, 30°C/75% RH): 24 months Storage statement (Zone IVb): Do not store above 30°C.</q> <span class="muted">[3.2.P.8.1_stability_summary]</span></td>
+<td>ICH Q1A(R2)<br><span class="muted">2.2.7 Storage conditions (accelerated)</span></td></tr><tr>
+<td><b>ICH-Q-STAB-04</b> <span class="muted">(ICH core)</span><br>Long-term condition 25°C/60% RH (Zones I/II)</td>
+<td><span class="v Met">Met</span></td>
+<td>3 batches at 25°C/60% RH (ZLV-P-001, ZLV-P-002, ZLV-P-003).<br><q>Long-term: 25°C ± 2°C / 60% RH ± 5% RH</q> <span class="muted">[3.2.P.8.3_stability_data]</span></td>
+<td>ICH Q1A(R2)<br><span class="muted">2.2.7 Storage conditions (long term)</span></td></tr><tr>
+<td><b>ICH-C-CSR-01</b> <span class="muted">(ICH core)</span><br>Pivotal efficacy study report</td>
+<td><span class="v Met">Met</span></td>
+<td>All keyword groups found.<br><q>Title: A randomised, open-label, phase III study of zelvoretinib versus standard of care in adults with previously treated advanced solid tumours harbouring ZLV-1 alterations.</q> <span class="muted">[5.3.5.1_csr_zlv301]</span><br><q>Patients: 612 randomised 1:1.</q> <span class="muted">[5.3.5.1_csr_zlv301]</span></td>
+<td>ICH M4E(R2) / ICH E3<br><span class="muted">5.3.5 Reports of efficacy and safety studies</span></td></tr><tr>
+<td><b>ICH-C-EXP-01</b> <span class="muted">(ICH core)</span><br>Benefit-risk conclusion acceptable</td>
+<td><span class="v Needs">Needs expert review</span></td>
+<td>Judgement call reserved for a qualified reviewer; evidence attached.<br><q># 2.5 Clinical Overview</q> <span class="muted">[2.5_clinical_overview]</span><br><q>## 2.5.6 Benefits and risks conclusions</q> <span class="muted">[2.5_clinical_overview]</span></td>
+<td>ICH M4E(R2)<br><span class="muted">2.5.6 Benefits and risks conclusions</span></td></tr><tr>
+<td><b>JP-M1-LANG</b><br>Module 1 and Module 2 provided in Japanese</td>
+<td><span class="v Missing">Missing</span></td>
+<td>Evidence is only promised or explicitly not done: &#39;will be provided&#39;.<br><q>Japanese translations of Module 1 and Module 2 will be provided before the filing date.</q> <span class="muted">[1_japan_administrative]</span></td>
+<td>MHLW notification on CTD (Japan)<br><span class="muted">Language of Module 1 / Module 2</span></td></tr><tr>
+<td><b>JP-M1-DMAH</b><br>Designated Marketing Authorization Holder in Japan</td>
+<td><span class="v Met">Met</span></td>
+<td>All keyword groups found.<br><q>## Designated Marketing Authorization Holder Kaede Pharma K.K., Chuo-ku, Tokyo (first-class marketing authorization holder licence no.</q> <span class="muted">[1_japan_administrative]</span><br><q>13A1X00999) is appointed as the designated MAH for Helvara Therapeutics AG.</q> <span class="muted">[1_japan_administrative]</span></td>
+<td>PMD Act<br><span class="muted">Approval for foreign manufacturers / designated MAH</span></td></tr><tr>
+<td><b>JP-M1-FMA</b><br>Foreign Manufacturer Accreditation</td>
+<td><span class="v Partial">Partial</span></td>
+<td>Evidence present but incomplete: &#39;pending&#39;.<br><q>The accreditation number is pending.</q> <span class="muted">[1_japan_administrative]</span><br><q>## Foreign Manufacturer Accreditation An application for Foreign Manufacturer Accreditation (FMA) for Helvara Production GmbH was filed with MHLW on 20 August 2026.</q> <span class="muted">[1_japan_administrative]</span></td>
+<td>PMD Act<br><span class="muted">Accreditation of foreign manufacturers (FMA)</span></td></tr><tr>
+<td><b>JP-C-BRIDGE</b><br>Ethnic factors / bridging data (ICH E5)</td>
+<td><span class="v Met">Met</span></td>
+<td>All keyword groups found.<br><q># 5.3.3.1 Study ZLV-104: Pharmacokinetics in Japanese and Caucasian Healthy Subjects</q> <span class="muted">[5.3.3.1_pk_japanese]</span><br><q>Design: open-label, single and multiple dose (50 mg once daily) study in 24 Japanese and 24 Caucasian healthy adult subjects, conducted in Tokyo and London.</q> <span class="muted">[5.3.3.1_pk_japanese]</span></td>
+<td>ICH E5(R1)<br><span class="muted">Ethnic factors in the acceptability of foreign clinical data</span></td></tr><tr>
+<td><b>JP-Q-JPCOMP</b><br>Compliance with the Japanese Pharmacopoeia</td>
+<td><span class="v Missing">Missing</span></td>
+<td>Evidence is only promised or explicitly not done: &#39;not been assessed&#39;.<br><q>Compliance with the Japanese Pharmacopoeia has not been assessed; this will be completed before the Japanese filing.</q> <span class="muted">[3.2.P.4_excipients]</span></td>
+<td>Japanese Pharmacopoeia<br><span class="muted">General notices</span></td></tr><tr>
+<td><b>JP-LBL-SHELF</b><br>Japan package insert shelf life matches stability conclusion</td>
+<td><span class="v Met">Met</span></td>
+<td>Label and Zone II stability conclusion both state 36 months.<br><q>Shelf life: 36 months</q> <span class="muted">[1_japan_administrative]</span><br><q>shelf life (Zone II, 25°C/60% RH): 36 months</q> <span class="muted">[3.2.P.8.1_stability_summary]</span></td>
+<td>ICH Q1E<br><span class="muted">Shelf life supported by stability (Zone II)</span></td></tr><tr>
+<td><b>JP-EXP-BRIDGE</b><br>Adequacy of the bridging strategy</td>
+<td><span class="v Needs">Needs expert review</span></td>
+<td>Judgement call reserved for a qualified reviewer; evidence attached.<br><q># 5.3.3.1 Study ZLV-104: Pharmacokinetics in Japanese and Caucasian Healthy Subjects</q> <span class="muted">[5.3.3.1_pk_japanese]</span><br><q># 5.3.5.1 Clinical Study Report ZLV-301 (synopsis)</q> <span class="muted">[5.3.5.1_csr_zlv301]</span></td>
+<td>ICH E5(R1)<br><span class="muted">Bridging study evaluation</span></td></tr>
+</table>
+
+<h2>Audit</h2>
+<table>
+<tr><th>Backend / model</th><td>offline-heuristic / offline-heuristic</td></tr>
+<tr><th>Config hash</th><td>cb14d16dbca4</td></tr>
+<tr><th>Corpus hash (requirements + dossier)</th><td>695a9db210ac3875</td></tr>
+<tr><th>LLM calls / tokens in / out</th><td>0 / 0 / 0</td></tr>
+<tr><th>Requirements checked / inherited</th><td>40 / 25</td></tr>
+<tr><th>Duration</th><td>78 ms</td></tr>
+</table>
+</body></html>

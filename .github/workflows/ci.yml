@@ -1,0 +1,60 @@
+name: ci
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  test-and-eval:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install
+        run: pip install -e ".[anthropic,openai,bedrock,dev]"
+      - name: Lint
+        run: ruff check src tests eval
+      - name: Unit + integration tests (no network, LLMs are mocked)
+        run: pytest -q
+      - name: Retrieval eval
+        run: python eval/eval_retrieval.py
+      - name: Gap eval with regression gate (gap recall must not drop)
+        run: python eval/eval_gaps.py --min-gap-recall 0.95
+      - name: Upload eval results
+        uses: actions/upload-artifact@v4
+        with:
+          name: eval-results
+          path: eval/results/
+
+  # Runs the real-LLM eval only when an API key secret is configured.
+  llm-eval:
+    runs-on: ubuntu-latest
+    needs: test-and-eval
+    if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' }}
+    env:
+      ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install -e ".[anthropic,dev]"
+      - name: LLM gap eval (synthetic, public data only)
+        if: ${{ env.ANTHROPIC_API_KEY != '' }}
+        run: python eval/eval_gaps.py --backends anthropic --model claude-sonnet-5-5 --min-gap-recall 0.95 --out eval/results-llm
+
+  docker:
+    runs-on: ubuntu-latest
+    needs: test-and-eval
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build image
+        run: docker build -t gapagent:${{ github.sha }} .
+      - name: Smoke test
+        run: |
+          docker run -d -p 8000:8000 --name api gapagent:${{ github.sha }}
+          for i in $(seq 1 20); do curl -sf localhost:8000/health && break; sleep 1; done
+          curl -sf -X POST localhost:8000/gap-checks -H 'content-type: application/json' \
+            -d '{"dossier_id":"zelvorin_global","markets":["US","IN","JP"]}' | python -m json.tool | head -20

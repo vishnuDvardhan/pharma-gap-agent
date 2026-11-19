@@ -1,0 +1,8 @@
+dossier_id: zelvorin_ref
+title: Zelvorin 50 mg film-coated tablets - EU reference dossier (as approved)
+product: zelvorin
+reference_market: EU
+data_classification: public-synthetic   # synthetic, non-sensitive: allowed for external LLM backends
+notes: >-
+  Fictional dossier written for testing. It contains the EU Module 1 only, so most
+  US/India/Japan Module 1 requirements are expected to be Missing.

@@ -1,0 +1,13 @@
+# FICTIONAL product. Any resemblance to a real medicine is accidental.
+product_id: zelvorin
+name: Zelvorin 50 mg film-coated tablets
+active_substance: zelvoretinib (fictional kinase inhibitor)
+dosage_form: film-coated tablet
+route: oral
+new_active_substance: true
+applicant: {name: "Helvara Therapeutics AG", country: CH}
+manufacturing_sites:
+  - {name: "Helvara Production GmbH", country: DE}
+approvals:
+  - {market: EU, type: "Marketing authorisation (centralised)", date: "2026-03-02"}
+data_classification: public-synthetic

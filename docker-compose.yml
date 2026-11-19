@@ -1,0 +1,25 @@
+services:
+  api:
+    build: .
+    ports: ["8000:8000"]
+    environment:
+      GAPAGENT_BACKEND: ${GAPAGENT_BACKEND:-offline-heuristic}
+      GAPAGENT_MODEL: ${GAPAGENT_MODEL:-claude-sonnet-5-5}
+      ANTHROPIC_API_KEY: ${ANTHROPIC_API_KEY:-}
+      OPENAI_API_KEY: ${OPENAI_API_KEY:-}
+      AWS_REGION: ${AWS_REGION:-us-east-1}
+      OLLAMA_BASE_URL: http://ollama:11434/v1
+    volumes:
+      - runs:/app/runs
+
+  # Optional local model for confidential data: `docker compose --profile local up`
+  # then `docker compose exec ollama ollama pull qwen2.5:7b-instruct`
+  ollama:
+    image: ollama/ollama:latest
+    profiles: ["local"]
+    volumes:
+      - ollama:/root/.ollama
+
+volumes:
+  runs:
+  ollama:

@@ -1,0 +1,136 @@
+# United States (FDA) overlay: new molecular entity, NDA under section 505(b)(1).
+# Module 1 is fully regional. `region: us` restricts evidence to m1/us documents.
+# Paraphrased for a prototype; verified: false until checked against 21 CFR / FDA guidance.
+
+market: US
+requirements:
+  - id: US-M1-356H
+    title: Form FDA 356h application form
+    ctd_section: "1.1"
+    region: us
+    source: {doc: "21 CFR 314.50", clause: "Application form (Form FDA 356h)"}
+    text: An NDA must be submitted with a completed and signed Form FDA 356h.
+    evidence_criteria: A completed, signed Form FDA 356h in the US Module 1.
+    check_type: llm
+    keywords: [["356h"], ["signed|signature"]]
+    severity: critical
+    verified: false
+
+  - id: US-M1-3397
+    title: User fee cover sheet (Form FDA 3397)
+    ctd_section: "1.1"
+    region: us
+    source: {doc: "FD&C Act sec. 736 (PDUFA)", clause: "Prescription drug user fee cover sheet"}
+    text: The application must include the user fee cover sheet (Form FDA 3397) with the payment identification number.
+    evidence_criteria: Form FDA 3397 with a user fee payment ID.
+    check_type: llm
+    keywords: [["3397"], ["payment|user fee"]]
+    severity: major
+    verified: false
+
+  - id: US-M1-AGENT
+    title: US agent for a foreign applicant
+    ctd_section: "1.1"
+    region: us
+    applies_if: {foreign_applicant: true}
+    source: {doc: "21 CFR 314.50(a)(5)", clause: "Applicant not residing in the United States"}
+    text: >-
+      If the applicant does not reside or have a place of business in the United States,
+      the application must name, and be countersigned by, an agent who resides or has a
+      place of business in the United States.
+    evidence_criteria: Name and address of a US agent who countersigns the application.
+    check_type: llm
+    keywords: [["us agent|u\\.s\\. agent|united states agent"], ["countersign"]]
+    severity: critical
+    verified: false
+
+  - id: US-M1-DEBAR
+    title: Debarment certification
+    ctd_section: "1.3"
+    region: us
+    source: {doc: "FD&C Act sec. 306(k)(1)", clause: "Debarment certification"}
+    text: >-
+      The applicant must certify that it did not and will not use the services of any
+      debarred person in connection with the application.
+    evidence_criteria: A signed statement certifying no debarred persons were used. A promise to provide it later is NOT evidence.
+    check_type: llm
+    keywords: [["debar"], ["certif"]]
+    severity: major
+    verified: false
+
+  - id: US-M1-FINDISC
+    title: Financial disclosure for clinical investigators
+    ctd_section: "1.3"
+    region: us
+    source: {doc: "21 CFR Part 54", clause: "Financial disclosure by clinical investigators (Forms FDA 3454/3455)"}
+    text: >-
+      The applicant must submit Form FDA 3454 (certification) and/or Form FDA 3455
+      (disclosure) covering ALL clinical investigators of covered studies.
+    evidence_criteria: Forms 3454/3455 covering every investigator of the covered studies. Coverage of only some investigators is Partial.
+    check_type: llm
+    keywords: [["3454|3455"], ["investigator"]]
+    severity: major
+    verified: false
+
+  - id: US-M1-PATENT
+    title: Patent information (Form FDA 3542a)
+    ctd_section: "1.3"
+    region: us
+    source: {doc: "21 CFR 314.53", clause: "Submission of patent information"}
+    text: Patent information on the drug substance, drug product and method of use must be submitted on Form FDA 3542a.
+    evidence_criteria: Form FDA 3542a listing patents (or a statement that no relevant patents exist).
+    check_type: llm
+    keywords: [["3542a"], ["patent"]]
+    severity: major
+    verified: false
+
+  - id: US-M1-PEDS
+    title: Agreed initial Pediatric Study Plan (PREA)
+    ctd_section: "1.9"
+    region: us
+    source: {doc: "FD&C Act sec. 505B (PREA)", clause: "Initial pediatric study plan"}
+    text: >-
+      A new active ingredient application must include pediatric assessments, or an
+      agreed initial Pediatric Study Plan with any requested waivers or deferrals.
+    evidence_criteria: Reference to an FDA-agreed iPSP, or a pediatric waiver/deferral request.
+    check_type: llm
+    keywords: [["pediatric|paediatric"], ["ipsp|study plan|waiver|deferral"]]
+    severity: major
+    verified: false
+
+  - id: US-M1-PLR
+    title: Prescribing information in PLR format + SPL
+    ctd_section: "1.14"
+    region: us
+    source: {doc: "21 CFR 201.56 / 201.57", clause: "Physician Labeling Rule format; SPL electronic format"}
+    text: >-
+      Prescribing information for a new drug must follow the PLR format (Highlights,
+      Contents, Full Prescribing Information) and be submitted in SPL format.
+    evidence_criteria: US prescribing information with Highlights and Full Prescribing Information, plus an SPL file.
+    check_type: llm
+    keywords: [["highlights"], ["full prescribing information"], ["spl|structured product labeling"]]
+    severity: critical
+    verified: false
+
+  - id: US-LBL-SHELF
+    title: US label shelf life matches stability conclusion
+    ctd_section: "1.14"
+    region: us
+    source: {doc: "ICH Q1E / 21 CFR 211.137", clause: "Expiration dating supported by stability data"}
+    text: The shelf life stated in the US labeling must match the shelf life supported in 3.2.P.8.1 for its climatic zone.
+    evidence_criteria: Same shelf life (months) in US labeling and in 3.2.P.8.1 for Zone II.
+    check_type: rule
+    rule: {name: shelf_life_consistency, params: {region: us, zone: "II"}}
+    severity: critical
+    verified: false
+
+  - id: US-EXP-REMS
+    title: Need for a REMS
+    ctd_section: "1.16"
+    region: us
+    source: {doc: "FD&C Act sec. 505-1", clause: "Risk Evaluation and Mitigation Strategies"}
+    text: Whether a REMS is needed beyond labeling is an FDA judgement based on the safety profile.
+    evidence_criteria: Risk management section / REMS proposal or justification for no REMS.
+    check_type: expert
+    severity: major
+    verified: false

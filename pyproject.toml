@@ -1,0 +1,46 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "gapagent"
+version = "0.1.0"
+description = "Multi-market regulatory gap analysis agent for CTD dossiers (prototype, synthetic data)"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+  "pydantic>=2.5",
+  "pyyaml>=6",
+  "numpy>=1.26",
+  "scikit-learn>=1.3",
+  "jinja2>=3.1",
+  "fastapi>=0.110",
+  "uvicorn>=0.27",
+]
+
+[project.optional-dependencies]
+anthropic = ["anthropic>=0.40"]
+openai = ["openai>=1.40"]
+bedrock = ["boto3>=1.34"]
+embeddings = ["sentence-transformers>=3.0"]
+pdf = ["pymupdf>=1.24"]
+dev = ["pytest>=8", "httpx>=0.27", "ruff>=0.5"]
+all = ["gapagent[anthropic,openai,bedrock,pdf,dev]"]
+
+[project.scripts]
+gapagent = "gapagent.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src"]
+
+[tool.ruff]
+line-length = 120
+target-version = "py310"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "B", "UP"]
+ignore = ["E501"]

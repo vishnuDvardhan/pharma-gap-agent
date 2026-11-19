@@ -1,0 +1,19 @@
+# Target markets. Pathway logic lives in code (src/gapagent/pathway.py), not in the LLM.
+markets:
+  US:
+    name: United States
+    agency: FDA
+    climatic_zone: "II"
+    overlay: us_fda.yaml
+  IN:
+    name: India
+    agency: CDSCO
+    climatic_zone: "IVb"
+    overlay: in_cdsco.yaml
+    # NDCT Rules 2019, Rule 101: countries whose approval the CLA may consider for a local-trial waiver.
+    waiver_reference_markets: [US, UK, JP, AU, CA, EU]
+  JP:
+    name: Japan
+    agency: PMDA
+    climatic_zone: "II"
+    overlay: jp_pmda.yaml

@@ -1,0 +1,26 @@
+# Every value can be overridden by an env var: GAPAGENT_<KEY> (e.g. GAPAGENT_BACKEND=anthropic).
+data_dir: data
+db_path: runs/gapagent.sqlite
+
+# offline-heuristic | offline-keyword | anthropic | openai | bedrock | ollama
+backend: offline-heuristic
+model: claude-sonnet-5-5          # e.g. gpt-4.1-mini (openai), qwen2.5:7b-instruct (ollama),
+                                  # anthropic.claude-sonnet-5-5-... model/inference-profile id (bedrock)
+temperature: 0.0
+max_tokens: 800
+
+retrieval:
+  method: hybrid                  # bm25 | dense | hybrid
+  embedder: tfidf                 # tfidf (offline) | st:BAAI/bge-small-en-v1.5 (needs sentence-transformers)
+  top_k: 4
+  section_filter: true
+
+mode: diff                        # diff: core ICH checks once, inherited by all markets | full: per market
+
+governance:
+  # Dossier data classifications that may be sent to an external API (Anthropic/OpenAI/Bedrock).
+  # Anything else must use a local model (ollama) or the offline checker.
+  allowed_external_classifications: [public-synthetic, non-sensitive]
+
+agent:
+  max_steps: 8

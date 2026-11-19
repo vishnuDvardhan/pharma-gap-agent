@@ -1,0 +1,127 @@
+# Gold verdicts, written BY HAND by the author (not by the system under test).
+# Verdicts: Met | Partial | Missing | Needs expert review | Not applicable
+# "ICH" = core requirements, checked once and inherited by every market (unless overridden).
+# `evidence` = the dossier file that holds the evidence (used for retrieval recall@k).
+
+verdicts:
+  zelvorin_ref:
+    ICH:
+      ICH-M2-QOS-01: Met
+      ICH-Q-DS-SPEC-01: Met
+      ICH-Q-DP-SPEC-01: Met
+      ICH-Q-VAL-01: Met
+      ICH-Q-IMP-01: Partial          # thresholds named, but no qualification discussion
+      ICH-Q-PV-01: Met
+      ICH-Q-CC-01: Met
+      ICH-Q-STAB-01: Met
+      ICH-Q-STAB-02: Met
+      ICH-Q-STAB-03: Met
+      ICH-Q-STAB-04: Met
+      ICH-C-CSR-01: Met
+      ICH-C-EXP-01: Needs expert review
+    US:
+      US-M1-356H: Missing
+      US-M1-3397: Missing
+      US-M1-AGENT: Missing
+      US-M1-DEBAR: Missing
+      US-M1-FINDISC: Missing
+      US-M1-PATENT: Missing
+      US-M1-PEDS: Missing
+      US-M1-PLR: Missing
+      US-LBL-SHELF: Missing
+      US-EXP-REMS: Needs expert review
+    IN:
+      IN-M1-CT18: Missing
+      IN-M1-APPROVAL: Missing
+      IN-M1-WAIVER: Missing
+      IN-C-LOCALCT: Not applicable   # EU approval -> waiver pathway
+      IN-M1-FORM40: Missing
+      IN-Q-STAB-IVB: Missing         # no 30°C/75% RH data at all
+      IN-M1-LABEL-RX: Missing
+      IN-LBL-SHELF: Missing
+      IN-PV-PSUR: Missing
+      IN-EXP-WAIVER: Needs expert review
+    JP:
+      JP-M1-LANG: Missing
+      JP-M1-DMAH: Missing
+      JP-M1-FMA: Missing
+      JP-C-BRIDGE: Missing           # no Asian patients, no Japanese PK
+      JP-Q-JPCOMP: Missing
+      JP-LBL-SHELF: Missing
+      JP-EXP-BRIDGE: Needs expert review
+
+  zelvorin_global:
+    ICH:
+      ICH-M2-QOS-01: Met
+      ICH-Q-DS-SPEC-01: Met
+      ICH-Q-DP-SPEC-01: Met
+      ICH-Q-VAL-01: Met
+      ICH-Q-IMP-01: Met
+      ICH-Q-PV-01: Met
+      ICH-Q-CC-01: Met
+      ICH-Q-STAB-01: Met
+      ICH-Q-STAB-02: Met
+      ICH-Q-STAB-03: Met
+      ICH-Q-STAB-04: Met
+      ICH-C-CSR-01: Met
+      ICH-C-EXP-01: Needs expert review
+    US:
+      US-M1-356H: Met
+      US-M1-3397: Met
+      US-M1-AGENT: Met
+      US-M1-DEBAR: Missing           # TRICKY: only promised ("to be provided")
+      US-M1-FINDISC: Partial         # TRICKY: 41 of 46 investigators
+      US-M1-PATENT: Met
+      US-M1-PEDS: Met
+      US-M1-PLR: Met
+      US-LBL-SHELF: Met
+      US-EXP-REMS: Needs expert review
+    IN:
+      IN-M1-CT18: Met
+      IN-M1-APPROVAL: Met
+      IN-M1-WAIVER: Met
+      IN-C-LOCALCT: Not applicable
+      IN-M1-FORM40: Met
+      IN-Q-STAB-IVB: Partial         # TRICKY: only 2 batches at 30°C/75% RH
+      IN-M1-LABEL-RX: Met            # TRICKY: evidence inside a table
+      IN-LBL-SHELF: Partial          # TRICKY: label 36 m vs Zone IVb conclusion 24 m
+      IN-PV-PSUR: Missing
+      IN-EXP-WAIVER: Needs expert review
+    JP:
+      JP-M1-LANG: Missing            # TRICKY: translations only promised
+      JP-M1-DMAH: Met
+      JP-M1-FMA: Partial             # TRICKY: application filed, accreditation pending
+      JP-C-BRIDGE: Met
+      JP-Q-JPCOMP: Missing           # TRICKY: "has not been assessed"
+      JP-LBL-SHELF: Met
+      JP-EXP-BRIDGE: Needs expert review
+
+evidence:
+  zelvorin_global:
+    ICH-M2-QOS-01: 2.3_quality_overall_summary
+    ICH-Q-DS-SPEC-01: 3.2.S.4.1_ds_specification
+    ICH-Q-DP-SPEC-01: 3.2.P.5.1_dp_specification
+    ICH-Q-VAL-01: 3.2.P.5.3_validation
+    ICH-Q-IMP-01: 3.2.P.5.5_impurities
+    ICH-Q-PV-01: 3.2.P.3.5_process_validation
+    ICH-Q-CC-01: 3.2.P.7_container_closure
+    ICH-Q-STAB-03: 3.2.P.8.3_stability_data
+    ICH-C-CSR-01: 5.3.5.1_csr_zlv301
+    US-M1-356H: 1.1_forms_and_cover_letter
+    US-M1-3397: 1.1_forms_and_cover_letter
+    US-M1-AGENT: 1.1_forms_and_cover_letter
+    US-M1-DEBAR: 1.3_administrative_information
+    US-M1-FINDISC: 1.3_administrative_information
+    US-M1-PATENT: 1.3_administrative_information
+    US-M1-PEDS: 1.9_pediatric
+    US-M1-PLR: 1.14_prescribing_information
+    IN-M1-CT18: 1.1_form_ct18
+    IN-M1-APPROVAL: 1.2_regulatory_status_and_waiver
+    IN-M1-WAIVER: 1.2_regulatory_status_and_waiver
+    IN-M1-FORM40: 1.2_regulatory_status_and_waiver
+    IN-M1-LABEL-RX: 1.3_label_india
+    JP-M1-LANG: 1_japan_administrative
+    JP-M1-DMAH: 1_japan_administrative
+    JP-M1-FMA: 1_japan_administrative
+    JP-C-BRIDGE: 5.3.3.1_pk_japanese
+    JP-Q-JPCOMP: 3.2.P.4_excipients

@@ -1,0 +1,62 @@
+[
+  {
+    "dossier": "zelvorin_global",
+    "method": "bm25",
+    "filter": false,
+    "n": 27,
+    "recall@1": 0.926,
+    "recall@3": 1.0,
+    "recall@5": 1.0,
+    "mrr": 0.963
+  },
+  {
+    "dossier": "zelvorin_global",
+    "method": "bm25",
+    "filter": true,
+    "n": 27,
+    "recall@1": 1.0,
+    "recall@3": 1.0,
+    "recall@5": 1.0,
+    "mrr": 1.0
+  },
+  {
+    "dossier": "zelvorin_global",
+    "method": "dense",
+    "filter": false,
+    "n": 27,
+    "recall@1": 0.926,
+    "recall@3": 1.0,
+    "recall@5": 1.0,
+    "mrr": 0.963
+  },
+  {
+    "dossier": "zelvorin_global",
+    "method": "dense",
+    "filter": true,
+    "n": 27,
+    "recall@1": 0.963,
+    "recall@3": 1.0,
+    "recall@5": 1.0,
+    "mrr": 0.981
+  },
+  {
+    "dossier": "zelvorin_global",
+    "method": "hybrid",
+    "filter": false,
+    "n": 27,
+    "recall@1": 0.889,
+    "recall@3": 1.0,
+    "recall@5": 1.0,
+    "mrr": 0.944
+  },
+  {
+    "dossier": "zelvorin_global",
+    "method": "hybrid",
+    "filter": true,
+    "n": 27,
+    "recall@1": 0.963,
+    "recall@3": 1.0,
+    "recall@5": 1.0,
+    "mrr": 0.981
+  }
+]

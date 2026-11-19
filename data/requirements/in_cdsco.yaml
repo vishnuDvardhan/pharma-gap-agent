@@ -1,0 +1,141 @@
+# India (CDSCO) overlay: import of a new drug under the New Drugs and Clinical Trials Rules, 2019.
+# Paraphrased for a prototype; verified: false until checked against the NDCT Rules 2019,
+# the Drugs Rules 1945 and current CDSCO notices.
+
+market: IN
+requirements:
+  - id: IN-M1-CT18
+    title: Application in Form CT-18 (import of new drug)
+    ctd_section: "1.1"
+    region: in
+    source: {doc: "NDCT Rules 2019", clause: "Chapter X / Form CT-18"}
+    text: An application to import a new drug for sale or distribution must be made in Form CT-18 with the prescribed fee.
+    evidence_criteria: A completed Form CT-18 with fee details.
+    check_type: llm
+    keywords: [["ct-18|ct 18"], ["fee"]]
+    severity: critical
+    verified: false
+
+  - id: IN-M1-APPROVAL
+    title: Proof of approval in a Rule 101 country
+    ctd_section: "1.2"
+    region: in
+    applies_if: {pathway: local_trial_waiver_eligible}
+    source: {doc: "NDCT Rules 2019", clause: "Rule 101 (countries notified for waiver)"}
+    text: >-
+      Where a local clinical trial waiver is sought on the basis of a prior approval, the
+      applicant must provide proof of approval (e.g. approval letter / CPP) from one of the
+      notified countries (US, UK, Japan, Australia, Canada, EU).
+    evidence_criteria: Copy of a marketing authorisation / CPP from a notified country.
+    check_type: llm
+    keywords: [["approval|marketing authori[sz]ation|cpp|certificate of pharmaceutical product|commission decision"], ["european|eu\\b|united states|japan|australia|canada|united kingdom"]]
+    severity: critical
+    verified: false
+
+  - id: IN-M1-WAIVER
+    title: Local clinical trial waiver request
+    ctd_section: "1.2"
+    region: in
+    applies_if: {pathway: local_trial_waiver_eligible}
+    source: {doc: "NDCT Rules 2019", clause: "Rule 101 and Second Schedule (waiver of local clinical trial)"}
+    text: The applicant must request the waiver of the local clinical trial explicitly, with a justification.
+    evidence_criteria: An explicit request to waive the local clinical trial, with reasons.
+    check_type: llm
+    keywords: [["waiver|waive"], ["clinical trial"]]
+    severity: critical
+    verified: false
+
+  - id: IN-C-LOCALCT
+    title: Local clinical trial in Indian subjects
+    ctd_section: "5.3.5"
+    applies_if: {pathway: local_trial_required}
+    source: {doc: "NDCT Rules 2019", clause: "Second Schedule (local clinical trial)"}
+    text: If no waiver applies, a clinical trial in Indian subjects is required before approval.
+    evidence_criteria: Report of a clinical study conducted at sites in India.
+    check_type: llm
+    keywords: [["india"], ["clinical trial|study"]]
+    severity: critical
+    verified: false
+
+  - id: IN-M1-FORM40
+    title: Registration of overseas site and product (Form 40)
+    ctd_section: "1.2"
+    region: in
+    applies_if: {imported: true}
+    source: {doc: "Drugs Rules 1945", clause: "Rule 24A / Form 40 (registration certificate in Form 41)"}
+    text: >-
+      For imported drugs, the overseas manufacturing site and the product must be
+      registered: application in Form 40, leading to a registration certificate in Form 41.
+    evidence_criteria: Form 40 application or Form 41 registration certificate for the manufacturing site.
+    check_type: llm
+    keywords: [["form 40|form 41"], ["registration"]]
+    severity: critical
+    verified: false
+
+  - id: IN-Q-STAB-IVB
+    title: Long-term stability at 30°C/75% RH (Zone IVb)
+    ctd_section: "3.2.P.8"
+    overrides: ICH-Q-STAB-04
+    source: {doc: "CDSCO stability guidance / ICH Q1A(R2) + WHO zone IVb", clause: "Long-term condition for Zone IVb"}
+    text: >-
+      India is in climatic zone IVb. Long-term stability data at 30°C ± 2°C / 75% RH ± 5% RH
+      on at least three batches is expected.
+    evidence_criteria: Long-term stability tables at 30°C/75% RH for at least 3 batches.
+    check_type: rule
+    rule: {name: long_term_condition, params: {temp: 30, rh: 75, min_batches: 3}}
+    severity: critical
+    verified: false
+
+  - id: IN-M1-LABEL-RX
+    title: Prescription-only (Schedule H) warning on label
+    ctd_section: "1.3"
+    region: in
+    source: {doc: "Drugs Rules 1945", clause: "Rule 96 / Schedule H labelling"}
+    text: >-
+      The label of a Schedule H drug must carry the Rx symbol and the warning that it is
+      to be sold by retail on the prescription of a Registered Medical Practitioner only.
+    evidence_criteria: Label text containing the Schedule H prescription warning.
+    check_type: llm
+    keywords: [["registered medical practitioner"], ["schedule h|rx"]]
+    severity: major
+    verified: false
+
+  - id: IN-LBL-SHELF
+    title: India label shelf life matches Zone IVb stability conclusion
+    ctd_section: "1.3"
+    region: in
+    source: {doc: "Drugs Rules 1945 / ICH Q1E", clause: "Expiry date supported by stability at local conditions"}
+    text: The shelf life on the Indian label must match the shelf life supported for Zone IVb in 3.2.P.8.1.
+    evidence_criteria: Same shelf life in the Indian label and in 3.2.P.8.1 for Zone IVb.
+    check_type: rule
+    rule: {name: shelf_life_consistency, params: {region: in, zone: "IVb"}}
+    severity: critical
+    verified: false
+
+  - id: IN-PV-PSUR
+    title: PSUR commitment
+    ctd_section: "1.8"
+    region: in
+    source: {doc: "NDCT Rules 2019", clause: "Post-marketing: Periodic Safety Update Reports"}
+    text: >-
+      The applicant must commit to submit Periodic Safety Update Reports: every six
+      months for the first two years after approval, then annually for the next two years.
+    evidence_criteria: A written PSUR commitment with the six-monthly then annual schedule.
+    check_type: llm
+    keywords: [["psur|periodic safety update"], ["\\bsix[- ]month|\\b6[- ]month"]]
+    severity: major
+    verified: false
+
+  - id: IN-EXP-WAIVER
+    title: Adequacy of the waiver justification
+    ctd_section: "1.2"
+    region: in
+    applies_if: {pathway: local_trial_waiver_eligible}
+    source: {doc: "NDCT Rules 2019", clause: "Rule 101 (discretion of the Central Licensing Authority)"}
+    text: >-
+      Whether the waiver justification is adequate (e.g. no expected ethnic differences,
+      unmet medical need) is decided by the CLA, usually with SEC advice.
+    evidence_criteria: The waiver justification text.
+    check_type: expert
+    severity: critical
+    verified: false

@@ -1,0 +1,473 @@
+[
+  {
+    "backend": "offline-keyword",
+    "model": "-",
+    "mode": "diff",
+    "retrieval": "config",
+    "n": 80,
+    "gap_recall": 0.844,
+    "gap_precision": 1.0,
+    "exact_acc": 0.925,
+    "quote_verified": 1.0,
+    "confusion": {
+      "Met": {
+        "Met": 38,
+        "Partial": 0,
+        "Missing": 0,
+        "Needs expert review": 0,
+        "Not applicable": 0
+      },
+      "Partial": {
+        "Met": 2,
+        "Partial": 3,
+        "Missing": 0,
+        "Needs expert review": 0,
+        "Not applicable": 0
+      },
+      "Missing": {
+        "Met": 3,
+        "Partial": 1,
+        "Missing": 23,
+        "Needs expert review": 0,
+        "Not applicable": 0
+      },
+      "Needs expert review": {
+        "Met": 0,
+        "Partial": 0,
+        "Missing": 0,
+        "Needs expert review": 8,
+        "Not applicable": 0
+      },
+      "Not applicable": {
+        "Met": 0,
+        "Partial": 0,
+        "Missing": 0,
+        "Needs expert review": 0,
+        "Not applicable": 2
+      }
+    },
+    "stats": {
+      "judge_calls": 56,
+      "llm_calls": 0,
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "duration_ms": 103
+    },
+    "misses": [
+      {
+        "dossier": "zelvorin_ref",
+        "market": "JP",
+        "req_id": "JP-Q-JPCOMP",
+        "gold": "Missing",
+        "pred": "Partial",
+        "reasoning": "Keyword groups found: 1/2."
+      },
+      {
+        "dossier": "zelvorin_global",
+        "market": "US",
+        "req_id": "US-M1-DEBAR",
+        "gold": "Missing",
+        "pred": "Met",
+        "reasoning": "All keyword groups found."
+      },
+      {
+        "dossier": "zelvorin_global",
+        "market": "US",
+        "req_id": "US-M1-FINDISC",
+        "gold": "Partial",
+        "pred": "Met",
+        "reasoning": "All keyword groups found."
+      },
+      {
+        "dossier": "zelvorin_global",
+        "market": "JP",
+        "req_id": "JP-M1-LANG",
+        "gold": "Missing",
+        "pred": "Met",
+        "reasoning": "All keyword groups found."
+      },
+      {
+        "dossier": "zelvorin_global",
+        "market": "JP",
+        "req_id": "JP-M1-FMA",
+        "gold": "Partial",
+        "pred": "Met",
+        "reasoning": "All keyword groups found."
+      },
+      {
+        "dossier": "zelvorin_global",
+        "market": "JP",
+        "req_id": "JP-Q-JPCOMP",
+        "gold": "Missing",
+        "pred": "Met",
+        "reasoning": "All keyword groups found."
+      }
+    ]
+  },
+  {
+    "backend": "offline-keyword",
+    "model": "-",
+    "mode": "full",
+    "retrieval": "config",
+    "n": 130,
+    "gap_recall": 0.853,
+    "gap_precision": 1.0,
+    "exact_acc": 0.954,
+    "quote_verified": 1.0,
+    "confusion": {
+      "Met": {
+        "Met": 82,
+        "Partial": 0,
+        "Missing": 0,
+        "Needs expert review": 0,
+        "Not applicable": 0
+      },
+      "Partial": {
+        "Met": 2,
+        "Partial": 5,
+        "Missing": 0,
+        "Needs expert review": 0,
+        "Not applicable": 0
+      },
+      "Missing": {
+        "Met": 3,
+        "Partial": 1,
+        "Missing": 23,
+        "Needs expert review": 0,
+        "Not applicable": 0
+      },
+      "Needs expert review": {
+        "Met": 0,
+        "Partial": 0,
+        "Missing": 0,
+        "Needs expert review": 12,
+        "Not applicable": 0
+      },
+      "Not applicable": {
+        "Met": 0,
+        "Partial": 0,
+        "Missing": 0,
+        "Needs expert review": 0,
+        "Not applicable": 2
+      }
+    },
+    "stats": {
+      "judge_calls": 92,
+      "llm_calls": 0,
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "duration_ms": 138
+    },
+    "misses": [
+      {
+        "dossier": "zelvorin_ref",
+        "market": "JP",
+        "req_id": "JP-Q-JPCOMP",
+        "gold": "Missing",
+        "pred": "Partial",
+        "reasoning": "Keyword groups found: 1/2."
+      },
+      {
+        "dossier": "zelvorin_global",
+        "market": "US",
+        "req_id": "US-M1-DEBAR",
+        "gold": "Missing",
+        "pred": "Met",
+        "reasoning": "All keyword groups found."
+      },
+      {
+        "dossier": "zelvorin_global",
+        "market": "US",
+        "req_id": "US-M1-FINDISC",
+        "gold": "Partial",
+        "pred": "Met",
+        "reasoning": "All keyword groups found."
+      },
+      {
+        "dossier": "zelvorin_global",
+        "market": "JP",
+        "req_id": "JP-M1-LANG",
+        "gold": "Missing",
+        "pred": "Met",
+        "reasoning": "All keyword groups found."
+      },
+      {
+        "dossier": "zelvorin_global",
+        "market": "JP",
+        "req_id": "JP-M1-FMA",
+        "gold": "Partial",
+        "pred": "Met",
+        "reasoning": "All keyword groups found."
+      },
+      {
+        "dossier": "zelvorin_global",
+        "market": "JP",
+        "req_id": "JP-Q-JPCOMP",
+        "gold": "Missing",
+        "pred": "Met",
+        "reasoning": "All keyword groups found."
+      }
+    ]
+  },
+  {
+    "backend": "offline-heuristic",
+    "model": "-",
+    "mode": "diff",
+    "retrieval": "config",
+    "n": 80,
+    "gap_recall": 1.0,
+    "gap_precision": 0.97,
+    "exact_acc": 0.975,
+    "quote_verified": 1.0,
+    "confusion": {
+      "Met": {
+        "Met": 37,
+        "Partial": 1,
+        "Missing": 0,
+        "Needs expert review": 0,
+        "Not applicable": 0
+      },
+      "Partial": {
+        "Met": 0,
+        "Partial": 5,
+        "Missing": 0,
+        "Needs expert review": 0,
+        "Not applicable": 0
+      },
+      "Missing": {
+        "Met": 0,
+        "Partial": 1,
+        "Missing": 26,
+        "Needs expert review": 0,
+        "Not applicable": 0
+      },
+      "Needs expert review": {
+        "Met": 0,
+        "Partial": 0,
+        "Missing": 0,
+        "Needs expert review": 8,
+        "Not applicable": 0
+      },
+      "Not applicable": {
+        "Met": 0,
+        "Partial": 0,
+        "Missing": 0,
+        "Needs expert review": 0,
+        "Not applicable": 2
+      }
+    },
+    "stats": {
+      "judge_calls": 56,
+      "llm_calls": 0,
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "duration_ms": 126
+    },
+    "misses": [
+      {
+        "dossier": "zelvorin_ref",
+        "market": "JP",
+        "req_id": "JP-Q-JPCOMP",
+        "gold": "Missing",
+        "pred": "Partial",
+        "reasoning": "Keyword groups found: 1/2."
+      },
+      {
+        "dossier": "zelvorin_global",
+        "market": "US",
+        "req_id": "US-M1-PLR",
+        "gold": "Met",
+        "pred": "Partial",
+        "reasoning": "Evidence present but incomplete: 'pending'."
+      }
+    ]
+  },
+  {
+    "backend": "offline-heuristic",
+    "model": "-",
+    "mode": "full",
+    "retrieval": "config",
+    "n": 130,
+    "gap_recall": 1.0,
+    "gap_precision": 0.971,
+    "exact_acc": 0.985,
+    "quote_verified": 1.0,
+    "confusion": {
+      "Met": {
+        "Met": 81,
+        "Partial": 1,
+        "Missing": 0,
+        "Needs expert review": 0,
+        "Not applicable": 0
+      },
+      "Partial": {
+        "Met": 0,
+        "Partial": 7,
+        "Missing": 0,
+        "Needs expert review": 0,
+        "Not applicable": 0
+      },
+      "Missing": {
+        "Met": 0,
+        "Partial": 1,
+        "Missing": 26,
+        "Needs expert review": 0,
+        "Not applicable": 0
+      },
+      "Needs expert review": {
+        "Met": 0,
+        "Partial": 0,
+        "Missing": 0,
+        "Needs expert review": 12,
+        "Not applicable": 0
+      },
+      "Not applicable": {
+        "Met": 0,
+        "Partial": 0,
+        "Missing": 0,
+        "Needs expert review": 0,
+        "Not applicable": 2
+      }
+    },
+    "stats": {
+      "judge_calls": 92,
+      "llm_calls": 0,
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "duration_ms": 168
+    },
+    "misses": [
+      {
+        "dossier": "zelvorin_ref",
+        "market": "JP",
+        "req_id": "JP-Q-JPCOMP",
+        "gold": "Missing",
+        "pred": "Partial",
+        "reasoning": "Keyword groups found: 1/2."
+      },
+      {
+        "dossier": "zelvorin_global",
+        "market": "US",
+        "req_id": "US-M1-PLR",
+        "gold": "Met",
+        "pred": "Partial",
+        "reasoning": "Evidence present but incomplete: 'pending'."
+      }
+    ]
+  },
+  {
+    "backend": "offline-heuristic",
+    "model": "-",
+    "mode": "diff",
+    "retrieval": {
+      "section_filter": false
+    },
+    "n": 80,
+    "gap_recall": 0.969,
+    "gap_precision": 0.969,
+    "exact_acc": 0.912,
+    "quote_verified": 1.0,
+    "confusion": {
+      "Met": {
+        "Met": 37,
+        "Partial": 1,
+        "Missing": 0,
+        "Needs expert review": 0,
+        "Not applicable": 0
+      },
+      "Partial": {
+        "Met": 0,
+        "Partial": 5,
+        "Missing": 0,
+        "Needs expert review": 0,
+        "Not applicable": 0
+      },
+      "Missing": {
+        "Met": 1,
+        "Partial": 5,
+        "Missing": 21,
+        "Needs expert review": 0,
+        "Not applicable": 0
+      },
+      "Needs expert review": {
+        "Met": 0,
+        "Partial": 0,
+        "Missing": 0,
+        "Needs expert review": 8,
+        "Not applicable": 0
+      },
+      "Not applicable": {
+        "Met": 0,
+        "Partial": 0,
+        "Missing": 0,
+        "Needs expert review": 0,
+        "Not applicable": 2
+      }
+    },
+    "stats": {
+      "judge_calls": 56,
+      "llm_calls": 0,
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "duration_ms": 148
+    },
+    "misses": [
+      {
+        "dossier": "zelvorin_ref",
+        "market": "US",
+        "req_id": "US-M1-356H",
+        "gold": "Missing",
+        "pred": "Partial",
+        "reasoning": "Keyword groups found: 1/2."
+      },
+      {
+        "dossier": "zelvorin_ref",
+        "market": "US",
+        "req_id": "US-M1-FINDISC",
+        "gold": "Missing",
+        "pred": "Partial",
+        "reasoning": "Keyword groups found: 1/2."
+      },
+      {
+        "dossier": "zelvorin_ref",
+        "market": "IN",
+        "req_id": "IN-M1-APPROVAL",
+        "gold": "Missing",
+        "pred": "Met",
+        "reasoning": "All keyword groups found."
+      },
+      {
+        "dossier": "zelvorin_ref",
+        "market": "IN",
+        "req_id": "IN-PV-PSUR",
+        "gold": "Missing",
+        "pred": "Partial",
+        "reasoning": "Keyword groups found: 1/2."
+      },
+      {
+        "dossier": "zelvorin_ref",
+        "market": "JP",
+        "req_id": "JP-M1-DMAH",
+        "gold": "Missing",
+        "pred": "Partial",
+        "reasoning": "Keyword groups found: 1/2."
+      },
+      {
+        "dossier": "zelvorin_global",
+        "market": "US",
+        "req_id": "US-M1-PLR",
+        "gold": "Met",
+        "pred": "Partial",
+        "reasoning": "Keyword groups found: 2/3."
+      },
+      {
+        "dossier": "zelvorin_global",
+        "market": "IN",
+        "req_id": "IN-PV-PSUR",
+        "gold": "Missing",
+        "pred": "Partial",
+        "reasoning": "Keyword groups found: 1/2."
+      }
+    ]
+  }
+]

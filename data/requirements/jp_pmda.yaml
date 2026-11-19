@@ -1,0 +1,91 @@
+# Japan (MHLW / PMDA) overlay: new active ingredient, foreign-origin data.
+# Paraphrased for a prototype; verified: false until checked against the PMD Act,
+# MHLW notifications and PMDA guidance.
+
+market: JP
+requirements:
+  - id: JP-M1-LANG
+    title: Module 1 and Module 2 provided in Japanese
+    ctd_section: "1"
+    region: jp
+    source: {doc: "MHLW notification on CTD (Japan)", clause: "Language of Module 1 / Module 2"}
+    text: Module 1 and Module 2 documents for a Japanese application must be provided in Japanese.
+    evidence_criteria: Japanese-language versions of Module 1 and Module 2 actually included. A plan to translate later is NOT evidence.
+    check_type: llm
+    keywords: [["japanese"], ["translation|language"]]
+    severity: critical
+    verified: false
+
+  - id: JP-M1-DMAH
+    title: Designated Marketing Authorization Holder in Japan
+    ctd_section: "1"
+    region: jp
+    applies_if: {foreign_applicant: true}
+    source: {doc: "PMD Act", clause: "Approval for foreign manufacturers / designated MAH"}
+    text: A foreign applicant must appoint a designated Marketing Authorization Holder located in Japan.
+    evidence_criteria: Name and licence details of a designated MAH in Japan.
+    check_type: llm
+    keywords: [["marketing authori[sz]ation holder|d-mah|designated mah"], ["japan|k\\.k\\."]]
+    severity: critical
+    verified: false
+
+  - id: JP-M1-FMA
+    title: Foreign Manufacturer Accreditation
+    ctd_section: "1"
+    region: jp
+    applies_if: {imported: true}
+    source: {doc: "PMD Act", clause: "Accreditation of foreign manufacturers (FMA)"}
+    text: Each overseas manufacturing site must hold a Foreign Manufacturer Accreditation (FMA) granted by MHLW.
+    evidence_criteria: An FMA accreditation number for each site. A pending application is Partial.
+    check_type: llm
+    keywords: [["foreign manufacturer accreditation|fma"], ["accredit"]]
+    severity: critical
+    verified: false
+
+  - id: JP-C-BRIDGE
+    title: Ethnic factors / bridging data (ICH E5)
+    ctd_section: "5"
+    source: {doc: "ICH E5(R1)", clause: "Ethnic factors in the acceptability of foreign clinical data"}
+    text: >-
+      When relying on foreign clinical data, the applicant must evaluate ethnic factors and
+      provide bridging data (e.g. PK in Japanese subjects) or a justification.
+    evidence_criteria: PK/clinical data in Japanese subjects or an ICH E5 bridging rationale.
+    check_type: llm
+    keywords: [["japanese"], ["pharmacokinetic|pk|bridging|ethnic"]]
+    severity: critical
+    verified: false
+
+  - id: JP-Q-JPCOMP
+    title: Compliance with the Japanese Pharmacopoeia
+    ctd_section: "3.2.P"
+    source: {doc: "Japanese Pharmacopoeia", clause: "General notices"}
+    text: >-
+      Excipients and test methods should comply with the Japanese Pharmacopoeia where a JP
+      monograph exists, or the differences must be justified.
+    evidence_criteria: A JP compliance statement or justification of differences. "Not performed" is NOT evidence.
+    check_type: llm
+    keywords: [["japanese pharmacopoeia|\\bjp\\b"], ["compl|conform"]]
+    severity: major
+    verified: false
+
+  - id: JP-LBL-SHELF
+    title: Japan package insert shelf life matches stability conclusion
+    ctd_section: "1"
+    region: jp
+    source: {doc: "ICH Q1E", clause: "Shelf life supported by stability (Zone II)"}
+    text: The shelf life in the Japanese package insert must match the Zone II shelf life in 3.2.P.8.1.
+    evidence_criteria: Same shelf life in the Japanese label and in 3.2.P.8.1 for Zone II.
+    check_type: rule
+    rule: {name: shelf_life_consistency, params: {region: jp, zone: "II"}}
+    severity: critical
+    verified: false
+
+  - id: JP-EXP-BRIDGE
+    title: Adequacy of the bridging strategy
+    ctd_section: "5"
+    source: {doc: "ICH E5(R1)", clause: "Bridging study evaluation"}
+    text: Whether the bridging data are sufficient to extrapolate foreign efficacy is a PMDA judgement.
+    evidence_criteria: The bridging data and rationale.
+    check_type: expert
+    severity: critical
+    verified: false

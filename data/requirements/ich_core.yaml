@@ -1,0 +1,177 @@
+# ICH core requirements: harmonised across US / India / Japan (CTD Modules 2-5).
+# Checked ONCE against the dossier and inherited by every target market (diff mode),
+# unless a market overlay overrides a requirement (see `overrides:` in overlays).
+#
+# IMPORTANT: `text` is a paraphrase written for this prototype. `verified: false` means the
+# clause has NOT been checked against the official guideline. Verify before trusting it.
+
+market: ICH
+requirements:
+  - id: ICH-M2-QOS-01
+    title: Quality Overall Summary present
+    ctd_section: "2.3"
+    source: {doc: "ICH M4Q(R1)", clause: "Module 2.3 Quality Overall Summary"}
+    text: >-
+      The dossier must contain a Quality Overall Summary (QOS) that summarises the
+      Module 3 data for the drug substance and the drug product.
+    evidence_criteria: A section 2.3 document that summarises drug substance and drug product quality data.
+    check_type: llm
+    keywords: [["quality overall summary"], ["drug substance"], ["drug product"]]
+    severity: major
+    verified: false
+
+  - id: ICH-Q-DS-SPEC-01
+    title: Drug substance specification
+    ctd_section: "3.2.S.4.1"
+    source: {doc: "ICH Q6A", clause: "Universal tests for new drug substances"}
+    text: >-
+      The drug substance specification must include at least description,
+      identification, assay and impurities tests with acceptance criteria.
+    evidence_criteria: A specification table for the drug substance listing identification, assay and impurity tests with limits.
+    check_type: llm
+    keywords: [["identification"], ["assay"], ["impurit"]]
+    severity: critical
+    verified: false
+
+  - id: ICH-Q-DP-SPEC-01
+    title: Drug product specification incl. dissolution
+    ctd_section: "3.2.P.5.1"
+    source: {doc: "ICH Q6A", clause: "Specific tests for solid oral dosage forms (dissolution)"}
+    text: >-
+      The drug product specification for a solid oral dosage form must include assay,
+      degradation products and dissolution, each with acceptance criteria.
+    evidence_criteria: A drug product specification listing assay, degradation products/impurities and dissolution with limits.
+    check_type: llm
+    keywords: [["assay"], ["degradation|impurit"], ["dissolution"]]
+    severity: critical
+    verified: false
+
+  - id: ICH-Q-VAL-01
+    title: Analytical procedure validation
+    ctd_section: "3.2.P.5.3"
+    source: {doc: "ICH Q2(R2)", clause: "Validation characteristics"}
+    text: >-
+      Analytical procedures used for release and stability testing must be validated
+      (e.g. specificity, linearity/range, accuracy, precision) and results reported.
+    evidence_criteria: Validation results for the assay/impurity methods covering specificity, accuracy and precision.
+    check_type: llm
+    keywords: [["validat"], ["specificity"], ["accuracy|precision"]]
+    severity: critical
+    verified: false
+
+  - id: ICH-Q-IMP-01
+    title: Degradation products discussed against thresholds
+    ctd_section: "3.2.P.5.5"
+    source: {doc: "ICH Q3B(R2)", clause: "Reporting, identification and qualification thresholds"}
+    text: >-
+      Degradation products must be characterised and discussed against the reporting,
+      identification and qualification thresholds; any degradation product above the
+      qualification threshold must be qualified.
+    evidence_criteria: A discussion of degradation products that explicitly references reporting, identification AND qualification thresholds.
+    check_type: llm
+    keywords: [["degradation"], ["reporting threshold|identification threshold"], ["qualification threshold|qualified"]]
+    severity: major
+    verified: false
+
+  - id: ICH-Q-PV-01
+    title: Process validation / evaluation
+    ctd_section: "3.2.P.3.5"
+    source: {doc: "ICH M4Q(R1)", clause: "3.2.P.3.5 Process validation and/or evaluation"}
+    text: >-
+      The dossier must describe process validation and/or evaluation studies for the
+      critical manufacturing steps of the drug product.
+    evidence_criteria: Description of process validation batches or a validation protocol covering critical steps.
+    check_type: llm
+    keywords: [["process validation|validation batches"], ["critical"]]
+    severity: major
+    verified: false
+
+  - id: ICH-Q-CC-01
+    title: Container closure system described
+    ctd_section: "3.2.P.7"
+    source: {doc: "ICH M4Q(R1)", clause: "3.2.P.7 Container closure system"}
+    text: >-
+      The container closure system must be described, including the materials of
+      construction of each primary packaging component.
+    evidence_criteria: Description of primary packaging with materials of construction.
+    check_type: llm
+    keywords: [["blister|bottle|container"], ["aluminium|aluminum|hdpe|pvc|polyamide"]]
+    severity: minor
+    verified: false
+
+  - id: ICH-Q-STAB-01
+    title: Stability on at least 3 primary batches
+    ctd_section: "3.2.P.8"
+    source: {doc: "ICH Q1A(R2)", clause: "2.2.3 Selection of batches"}
+    text: >-
+      Stability data should be provided on at least three primary batches of the drug
+      product.
+    evidence_criteria: Stability data tables for at least three distinct batches at the long-term condition.
+    check_type: rule
+    rule: {name: min_stability_batches, params: {min_batches: 3, temp: 25, rh: 60}}
+    severity: critical
+    verified: false
+
+  - id: ICH-Q-STAB-02
+    title: At least 12 months long-term data at submission
+    ctd_section: "3.2.P.8"
+    source: {doc: "ICH Q1A(R2)", clause: "2.2.7 Testing frequency / minimum time period at submission"}
+    text: >-
+      At the time of submission, long-term stability data should cover a minimum of
+      12 months on the primary batches.
+    evidence_criteria: Long-term stability results reaching at least the 12-month time point.
+    check_type: rule
+    rule: {name: min_long_term_months, params: {min_months: 12, temp: 25, rh: 60}}
+    severity: critical
+    verified: false
+
+  - id: ICH-Q-STAB-03
+    title: Accelerated stability (40°C/75% RH, 6 months)
+    ctd_section: "3.2.P.8"
+    source: {doc: "ICH Q1A(R2)", clause: "2.2.7 Storage conditions (accelerated)"}
+    text: >-
+      Accelerated stability data at 40°C ± 2°C / 75% RH ± 5% RH covering 6 months should
+      be provided.
+    evidence_criteria: Accelerated stability results at 40°C/75% RH up to 6 months.
+    check_type: llm
+    keywords: [["40\\s*°?\\s*c"], ["75\\s*%\\s*rh"], ["6 months|\\b6\\s*m\\b|month 6"]]
+    severity: major
+    verified: false
+
+  - id: ICH-Q-STAB-04
+    title: Long-term condition 25°C/60% RH (Zones I/II)
+    ctd_section: "3.2.P.8"
+    source: {doc: "ICH Q1A(R2)", clause: "2.2.7 Storage conditions (long term)"}
+    text: >-
+      Long-term stability testing for climatic zones I/II is performed at 25°C ± 2°C /
+      60% RH ± 5% RH (or 30°C/65% RH).
+    evidence_criteria: Long-term stability results stored at 25°C/60% RH or 30°C/65% RH.
+    check_type: rule
+    rule: {name: long_term_condition, params: {temp: 25, rh: 60, min_batches: 1}}
+    severity: critical
+    verified: false
+
+  - id: ICH-C-CSR-01
+    title: Pivotal efficacy study report
+    ctd_section: "5.3.5"
+    source: {doc: "ICH M4E(R2) / ICH E3", clause: "5.3.5 Reports of efficacy and safety studies"}
+    text: >-
+      The dossier must contain the clinical study report(s) of the pivotal controlled
+      efficacy and safety study/studies.
+    evidence_criteria: A clinical study report of a randomised controlled phase III study with primary endpoint results.
+    check_type: llm
+    keywords: [["phase iii|phase 3"], ["primary endpoint"], ["randomi[sz]ed"]]
+    severity: critical
+    verified: false
+
+  - id: ICH-C-EXP-01
+    title: Benefit-risk conclusion acceptable
+    ctd_section: "2.5.6"
+    source: {doc: "ICH M4E(R2)", clause: "2.5.6 Benefits and risks conclusions"}
+    text: >-
+      The clinical overview must give a benefit-risk conclusion. Whether it is acceptable
+      is a regulatory/medical judgement.
+    evidence_criteria: The benefit-risk section of the clinical overview.
+    check_type: expert
+    severity: critical
+    verified: false
