@@ -18,6 +18,12 @@ retrieval:
   top_k: 4
   section_filter: true
 
+multi_agent:
+  parallel: true                  # market specialists run concurrently
+  max_revisions: 1                # reviewer may send the draft back this many times
+  specialist_max_steps: 6
+  models: {}                      # optional per-role model routing, e.g. {specialist: claude-haiku-5-5}
+
 mode: diff                        # diff: core ICH checks once, inherited by all markets | full: per market
 
 governance:
