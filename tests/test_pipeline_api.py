@@ -96,13 +96,19 @@ def test_api_end_to_end(client):
     assert client.post("/gap-checks", json={"dossier_id": "zelvorin_ref", "markets": ["BR"]}).status_code == 422
 
 
-def test_api_vector_index_and_search(client):
+def test_api_multi_agent_and_vector_search(client):
+    r = client.post("/agent/multi", json={"question": "What blocks a launch in India?"})
+    assert r.status_code == 200, r.text
+    body = r.json()
+    assert body["plan"]["markets"] == ["IN"] and body["review"]["approved"]
+    assert {a["req_id"] for a in body["briefs"]["IN"]["actions"]} >= {"IN-Q-STAB-IVB", "IN-LBL-SHELF", "IN-PV-PSUR"}
+    assert {"supervisor", "specialist:IN", "reviewer"} <= {t["agent"] for t in body["trace"]}
     idx = client.post("/vectors/index").json()
-    assert idx["chunks"] > 0 and idx["stats"]["zelvorin_global"]["added"] > 0
-    assert client.post("/vectors/index").json()["stats"]["zelvorin_global"]["added"] == 0   # incremental
+    assert idx["chunks"] > 0 and idx["stats"]["zelvorin_global"]["added"] == 0     # already indexed by the crew
     hits = client.get("/vectors/search", params={"q": "Form 356h", "dossier_id": "zelvorin_ref",
                                                  "module": "m1", "region": "us"}).json()
     assert hits == []                                     # the EU-only dossier has no US Module 1
     hits = client.get("/vectors/search", params={"q": "Zone IVb stability", "market": "IN", "k": 2}).json()
     assert hits[0]["id"] == "IN-Q-STAB-IVB"
     assert client.get("/vectors/search", params={"q": "x", "k": 99}).status_code == 422
+    assert "gapagent_multi_agent_questions_total 1" in client.get("/metrics").text

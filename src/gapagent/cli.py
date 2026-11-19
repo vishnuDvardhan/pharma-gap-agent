@@ -1,4 +1,4 @@
-"""Command line: `gapagent check | ask | index | search | serve`."""
+"""Command line: `gapagent check | ask [--multi] | index | search | serve`."""
 from __future__ import annotations
 
 import argparse
@@ -30,6 +30,7 @@ def main(argv: list[str] | None = None) -> int:
     a.add_argument("question")
     a.add_argument("--dossier", default="zelvorin_global")
     a.add_argument("--trace", action="store_true")
+    a.add_argument("--multi", action="store_true", help="use the multi-agent crew (supervisor + specialists)")
 
     i = sub.add_parser("index", help="build / refresh the vector DB (incremental)")
     i.add_argument("dossiers", nargs="*", help="dossier ids (default: all)")
@@ -65,6 +66,21 @@ def main(argv: list[str] | None = None) -> int:
                 if f.verdict in GAP_VERDICTS:
                     print(f"  - {f.verdict.value:8} [{f.severity}] {f.req_id}: {f.reasoning[:90]}")
         print(f"\nreport: {path}")
+    elif args.cmd == "ask" and args.multi:
+        from .multiagent import run_multi_agent
+        res = run_multi_agent(args.question, cfg, args.dossier, AuditStore(cfg["db_path"]))
+        if args.trace:
+            for t in res.trace:
+                what = f"{t['tool']}({t['args']})" if "tool" in t else \
+                    f"[{t['event']}] " + ", ".join(f"{k}={v}" for k, v in t.items() if k not in ("agent", "event", "t_ms"))
+                print(f"{t['t_ms']:>5} ms  {t['agent']:<20} {what}")
+            print()
+        print(res.answer)
+        print(f"\nreviewer: {'approved' if res.review.approved else 'NOT approved'} {res.review.checks}"
+              f" · revisions {res.revisions} · {res.duration_ms} ms")
+        print("agents: " + ", ".join(f"{a} ({u.llm_calls} LLM calls, {u.ms} ms)" for a, u in res.usage.items()))
+        if res.flags:
+            print(f"flags: {res.flags}")
     elif args.cmd == "ask":
         res = run_agent(args.question, cfg, args.dossier, AuditStore(cfg["db_path"]))
         if args.trace:

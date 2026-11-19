@@ -20,6 +20,7 @@ from .audit import AuditStore
 from .config import load_config
 from .llm import DataClassificationError
 from .loader import load_dossier, load_markets, load_requirements
+from .multiagent import run_multi_agent
 from .pipeline import market_view, run_gap_check
 from .report import market_counts, render_html
 from .schema import GAP_VERDICTS
@@ -155,6 +156,21 @@ def ask(req: AskRequest):
             "llm_calls": res.llm_calls}
 
 
+@app.post("/agent/multi")
+def ask_multi(req: AskRequest):
+    """Multi-agent crew: supervisor plans, specialists (one per market) work in parallel, a reviewer checks."""
+    _dossier_exists(req.dossier_id)
+    try:
+        res = run_multi_agent(req.question, CFG, req.dossier_id, STORE)
+    except DataClassificationError as e:
+        raise HTTPException(403, str(e)) from e
+    METRICS["multi_agent_questions_total"] += 1
+    METRICS["multi_agent_review_rejections_total"] += 0 if res.review.approved else 1
+    METRICS["multi_agent_revisions_total"] += res.revisions
+    METRICS["agent_guardrail_flags_total"] += len(res.flags)
+    return res.to_dict()
+
+
 def _stores():
     chunks = make_vector_store(CFG, DOSSIER_COLLECTION)
     if chunks is None:
@@ -209,4 +225,13 @@ def home():
 <label><input type="checkbox" name="m" value="IN" checked>IN</label>
 <label><input type="checkbox" name="m" value="JP" checked>JP</label>
 <button>Run</button></form>
+<h3>Ask the agent team</h3>
+<p style="color:#555">Supervisor → regulatory-intelligence agent → gap-check executor → market specialists (parallel)
+ → synthesizer → compliance reviewer.</p>
+<form onsubmit="event.preventDefault();out.textContent='Agents working…';fetch('/agent/multi',{{method:'POST',
+ headers:{{'content-type':'application/json'}},body:JSON.stringify({{question:q.value,dossier_id:d.value}})}})
+ .then(r=>r.json()).then(j=>{{out.textContent=j.answer+'\\n\\nReviewer: '+(j.review.approved?'approved':'NOT approved')
+ +' · revisions '+j.revisions+' · '+j.duration_ms+' ms\\nAgents: '+Object.keys(j.usage).join(' → ');}})">
+<input id="q" style="width:70%" value="What blocks a launch in India and Japan?"> <button>Ask</button></form>
+<pre id="out" style="white-space:pre-wrap;background:#f6f6f6;padding:10px"></pre>
 <h3>Recent runs</h3><ul>{rows}</ul></body>"""
