@@ -94,3 +94,15 @@ def test_api_end_to_end(client):
     assert "gapagent_http_requests_total" in client.get("/metrics").text
     assert client.post("/gap-checks", json={"dossier_id": "nope", "markets": ["US"]}).status_code == 404
     assert client.post("/gap-checks", json={"dossier_id": "zelvorin_ref", "markets": ["BR"]}).status_code == 422
+
+
+def test_api_vector_index_and_search(client):
+    idx = client.post("/vectors/index").json()
+    assert idx["chunks"] > 0 and idx["stats"]["zelvorin_global"]["added"] > 0
+    assert client.post("/vectors/index").json()["stats"]["zelvorin_global"]["added"] == 0   # incremental
+    hits = client.get("/vectors/search", params={"q": "Form 356h", "dossier_id": "zelvorin_ref",
+                                                 "module": "m1", "region": "us"}).json()
+    assert hits == []                                     # the EU-only dossier has no US Module 1
+    hits = client.get("/vectors/search", params={"q": "Zone IVb stability", "market": "IN", "k": 2}).json()
+    assert hits[0]["id"] == "IN-Q-STAB-IVB"
+    assert client.get("/vectors/search", params={"q": "x", "k": 99}).status_code == 422

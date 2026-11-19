@@ -10,7 +10,7 @@ from collections import defaultdict
 from pathlib import Path
 from typing import Literal
 
-from fastapi import FastAPI, HTTPException, Request
+from fastapi import FastAPI, HTTPException, Query, Request
 from fastapi.responses import HTMLResponse, PlainTextResponse
 from pydantic import BaseModel, Field
 
@@ -19,10 +19,17 @@ from .agent import run_agent
 from .audit import AuditStore
 from .config import load_config
 from .llm import DataClassificationError
-from .loader import load_markets
+from .loader import load_dossier, load_markets, load_requirements
 from .pipeline import market_view, run_gap_check
 from .report import market_counts, render_html
 from .schema import GAP_VERDICTS
+from .vectorstore import (
+    DOSSIER_COLLECTION,
+    REQUIREMENT_COLLECTION,
+    index_dossier,
+    index_requirements,
+    make_vector_store,
+)
 
 log = logging.getLogger("gapagent")
 logging.basicConfig(level=logging.INFO, format="%(message)s")
@@ -146,6 +153,38 @@ def ask(req: AskRequest):
     METRICS["agent_guardrail_flags_total"] += len(res.flags)
     return {"answer": res.answer, "run_id": res.run_id, "flags": res.flags, "trace": res.trace,
             "llm_calls": res.llm_calls}
+
+
+def _stores():
+    chunks = make_vector_store(CFG, DOSSIER_COLLECTION)
+    if chunks is None:
+        raise HTTPException(409, "vector store disabled (retrieval.vector_store: none)")
+    return chunks, make_vector_store(CFG, REQUIREMENT_COLLECTION)
+
+
+@app.post("/vectors/index")
+def vectors_index():
+    """Incrementally (re)index every dossier and the requirement library. Unchanged text is not re-embedded."""
+    chunks, reqs = _stores()
+    data = Path(CFG["data_dir"])
+    out = {d: vars(index_dossier(chunks, load_dossier(data / "dossiers" / d))) for d in dossiers()}
+    out["requirements"] = vars(index_requirements(reqs, [r for rs in load_requirements(data).values() for r in rs]))
+    return {"backend": chunks.backend, "embedder": chunks.embedder.id, "chunks": chunks.count(), "stats": out}
+
+
+@app.get("/vectors/search")
+def vectors_search(q: str, dossier_id: str | None = None, module: str | None = None, region: str | None = None,
+                   market: str | None = None, k: int = Query(5, ge=1, le=20)):
+    """Semantic search. With dossier_id: dossier chunks (filter by module/region); else the requirement library."""
+    chunks, reqs = _stores()
+    if dossier_id:
+        _dossier_exists(dossier_id)
+        index_dossier(chunks, load_dossier(Path(CFG["data_dir"]) / "dossiers" / dossier_id))
+        where = {"dossier_id": dossier_id, **({"module": module} if module else {}), **({"region": region} if region else {})}
+        hits = chunks.query(q, k, where)
+    else:
+        hits = reqs.query(q, k, {"market": market} if market else None)
+    return [{"id": h.id, "score": round(h.score, 4), "metadata": h.metadata, "text": h.text[:400]} for h in hits]
 
 
 @app.get("/metrics", response_class=PlainTextResponse)
